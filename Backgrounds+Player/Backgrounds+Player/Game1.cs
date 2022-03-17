@@ -38,7 +38,7 @@ namespace Backgrounds_Player
             base.Initialize();
 
             //theme = rnd.Next(1, 5);
-            theme = 4;
+            theme = 2;
 
             Setup();
             backgroundHandler = new BackgroundHandler(theme);
