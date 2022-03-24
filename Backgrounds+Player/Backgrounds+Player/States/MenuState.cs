@@ -15,13 +15,13 @@ namespace Backgrounds_Player.States
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             var buttonTexture = _content.Load<Texture2D>("Controls/button");
-            var titleTexture = _content.Load<Texture2D>("theGame");
+            //var titleTexture = _content.Load<Texture2D>("theGame");
             var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
 
-            var title = new Title(titleTexture) 
-            { 
-                Position = new Vector2(400, 50) 
-            };
+            //var title = new Title(titleTexture) 
+            //{ 
+            //    Position = new Vector2(400, 50) 
+            //};
             
 
             var newGameButton = new Button(buttonTexture, buttonFont)
@@ -50,7 +50,7 @@ namespace Backgrounds_Player.States
 
             _components = new List<Components>()
             {
-                title,
+                //title,
                 newGameButton,
                 loadGameButton,
                 quitGameButton,

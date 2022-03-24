@@ -44,7 +44,7 @@ namespace Backgrounds_Player
                     var background = new ScrollingBackgroundLayer(TextureHandler.Instance.ArcticSky, 0f, .1f);
                     backgrounds.Add(background);
 
-                    var sun = new ScrollingBackgroundLayer(TextureHandler.Instance.Sun, 0f, .4f);
+                    var sun = new ScrollingBackgroundLayer(TextureHandler.Instance.ArcticSun, 0f, .4f);
                     backgrounds.Add(sun);
 
                     var back = new ScrollingBackgroundLayer(TextureHandler.Instance.ArcticBack, 25f, .5f);
@@ -70,7 +70,7 @@ namespace Backgrounds_Player
                     var sun1 = new ScrollingBackgroundLayer(TextureHandler.Instance.SavannahSun, 0f, .2f);
                     backgrounds.Add(sun1);
 
-                    var ground = new ScrollingBackgroundLayer(TextureHandler.Instance.SannahGrass, 61f, 0.3f);
+                    var ground = new ScrollingBackgroundLayer(TextureHandler.Instance.SavannahGrass, 61f, 0.3f);
                     backgrounds.Add(ground);
 
                     var treesBack = new ScrollingBackgroundLayer(TextureHandler.Instance.DistantTrees, 40f, .4f);

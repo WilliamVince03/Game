@@ -33,7 +33,7 @@ namespace Backgrounds_Player
 
         // ice
         public Texture2D ArcticSky { get; set; }
-        public Texture2D Sun { get; set; }
+        public Texture2D ArcticSun { get; set; }
         public Texture2D ArcticCloud { get; set; }
         public Texture2D ArcticBack { get; set; }
         public Texture2D ArcticMiddle { get; set; }
@@ -48,7 +48,7 @@ namespace Backgrounds_Player
         // Savannah
         public Texture2D SavannahSky { get; set; }
         public Texture2D SavannahSun { get; set; }
-        public Texture2D SannahGrass { get; set; }
+        public Texture2D SavannahGrass { get; set; }
         public Texture2D DistantTrees { get; set; }
         public Texture2D DistantGrass { get; set; }
         public Texture2D CloseTree { get; set; }
@@ -98,63 +98,63 @@ namespace Backgrounds_Player
 
 
             //city
-            CityForeground = content.Load<Texture2D>("CityForeground");
-            Houses = content.Load<Texture2D>("Houses");
-            BackgroundHousesColored = content.Load<Texture2D>("BackgroundHousesColored");
-            BackgroundHousesGreys = content.Load<Texture2D>("BackgroundHousesGreys");
-            CityCloudsHigh = content.Load<Texture2D>("CityCloudsHigh");
-            CityCloudsLow = content.Load<Texture2D>("CityCloudsLow");
-            CitySky = content.Load<Texture2D>("CitySky");
+            CityForeground = content.Load<Texture2D>("City/Background/CityForeground");
+            Houses = content.Load<Texture2D>("City/Background/Houses");
+            BackgroundHousesColored = content.Load<Texture2D>("City/Background/BackgroundHousesColored");
+            BackgroundHousesGreys = content.Load<Texture2D>("City/Background/BackgroundHousesGreys");
+            CityCloudsHigh = content.Load<Texture2D>("City/Background/CityCloudsHigh");
+            CityCloudsLow = content.Load<Texture2D>("City/Background/CityCloudsLow");
+            CitySky = content.Load<Texture2D>("City/Background/CitySky");
             //obstacles
-            Firepost = content.Load<Texture2D>("Firepost");
-            NewspaperInFlight = content.Load<Texture2D>("NewspaperInFlight");
+            Firepost = content.Load<Texture2D>("City/Obstacles/Firepost");
+            NewspaperInFlight = content.Load<Texture2D>("City/Obstacles/NewspaperInFlight");
             //player
-            WalkingPoodle = content.Load<Texture2D>("WalkingPoodle");
-            DeadPoodle = content.Load<Texture2D>("DeadPoodle");
+            WalkingPoodle = content.Load<Texture2D>("City/Player/WalkingPoodle");
+            DeadPoodle = content.Load<Texture2D>("City/Player/DeadPoodle");
 
 
             //arctic
-            ArcticSky = content.Load<Texture2D>("ArcticSky");
-            Sun = content.Load<Texture2D>("Sol"); // Fixa rätt sol
-            ArcticCloud = content.Load<Texture2D>("ArcticCloud");
-            ArcticBack = content.Load<Texture2D>("ArcticBack");
-            ArcticMiddle = content.Load<Texture2D>("ArcticMiddle");
-            ArcticClose = content.Load<Texture2D>("ArcticClose");
-            ArcticForeground = content.Load<Texture2D>("ArcticForeground");
+            ArcticSky = content.Load<Texture2D>("Arctic/Background/ArcticSky");
+            ArcticSun = content.Load<Texture2D>("Arctic/Background/ArcticSun"); 
+            ArcticCloud = content.Load<Texture2D>("Arctic/Background/ArcticCloud");
+            ArcticBack = content.Load<Texture2D>("Arctic/Background/ArcticBack");
+            ArcticMiddle = content.Load<Texture2D>("Arctic/Background/ArcticMiddle");
+            ArcticClose = content.Load<Texture2D>("Arctic/Background/ArcticClose");
+            ArcticForeground = content.Load<Texture2D>("Arctic/Background/ArcticForeground");
             //player
-            WalkingPenguin = content.Load<Texture2D>("WalkingPenguin");
-            DeadPenguin = content.Load<Texture2D>("DeadPenguin");
-            IdlePenguin = content.Load<Texture2D>("IdlePenguin");
+            WalkingPenguin = content.Load<Texture2D>("Arctic/Player/WalkingPenguin");
+            DeadPenguin = content.Load<Texture2D>("Arctic/Player/DeadPenguin");
+            IdlePenguin = content.Load<Texture2D>("Arctic/Player/IdlePenguin");
             //obstacles
-            Snowball = content.Load<Texture2D>("Snowball");
+            Snowball = content.Load<Texture2D>("Arctic/Obstacles/Snowball");
 
             // Savannah
-            SavannahSky = content.Load<Texture2D>("SavannahSky");
-            SavannahSun = content.Load<Texture2D>("SavannahSun");
-            SannahGrass = content.Load<Texture2D>("SannahGrass");
-            DistantTrees = content.Load<Texture2D>("DistantTrees");
-            DistantGrass = content.Load<Texture2D>("DistantGrass");
-            CloseTree = content.Load<Texture2D>("CloseTree");
-            CoveringGrass = content.Load<Texture2D>("CoveringGrass");
-            SavannahForegrund = content.Load<Texture2D>("SavannahForegrund");
+            SavannahSky = content.Load<Texture2D>("Savannah/Background/SavannahSky");
+            SavannahSun = content.Load<Texture2D>("Savannah/Background/SavannahSun");
+            SavannahGrass = content.Load<Texture2D>("Savannah/Background/SavannahGrass");
+            DistantTrees = content.Load<Texture2D>("Savannah/Background/DistantTrees");
+            DistantGrass = content.Load<Texture2D>("Savannah/Background/DistantGrass");
+            CloseTree = content.Load<Texture2D>("Savannah/Background/CloseTree");
+            CoveringGrass = content.Load<Texture2D>("Savannah/Background/CoveringGrass");
+            SavannahForegrund = content.Load<Texture2D>("Savannah/Background/SavannahForegrund");
             //player
-            KangarooRun = content.Load<Texture2D>("KangarooRun");
-            KangarooDeath = content.Load<Texture2D>("KangarooDeath");
-            KangarooIdle = content.Load<Texture2D>("KangarooIdle");
+            KangarooRun = content.Load<Texture2D>("Savannah/Player/KangarooRun");
+            KangarooDeath = content.Load<Texture2D>("Savannah/Player/KangarooDeath");
+            KangarooIdle = content.Load<Texture2D>("Savannah/Player/KangarooIdle");
 
             // Jungle
-            BackgroundFog = content.Load<Texture2D>("BackgroundFog");
-            BackgroundDistant = content.Load<Texture2D>("BackgroundDistant");
-            BackgroundMiddle = content.Load<Texture2D>("BackgroundMiddle");
-            BackgroundClose = content.Load<Texture2D>("BackgroundClose");
-            JungleForeground = content.Load<Texture2D>("JungleForeground");
+            BackgroundFog = content.Load<Texture2D>("Jungle/Background/BackgroundFog");
+            BackgroundDistant = content.Load<Texture2D>("Jungle/Background/BackgroundDistant");
+            BackgroundMiddle = content.Load<Texture2D>("Jungle/Background/BackgroundMiddle");
+            BackgroundClose = content.Load<Texture2D>("Jungle/Background/BackgroundClose");
+            JungleForeground = content.Load<Texture2D>("Jungle/Background/JungleForeground");
             //player
-            MonkeyDeath = content.Load<Texture2D>("MonkeyDeath");// lite off
-            MonkeyRun = content.Load<Texture2D>("MonkeyRun");
-            MonkeyIdle = content.Load<Texture2D>("MonkeyIdle");
+            MonkeyDeath = content.Load<Texture2D>("Jungle/Player/MonkeyDeath");// lite off
+            MonkeyRun = content.Load<Texture2D>("Jungle/Player/MonkeyRun");
+            MonkeyIdle = content.Load<Texture2D>("Jungle/Player/MonkeyIdle");
             //obstacles
-            Arrow = content.Load<Texture2D>("Arrow");
-            //Log = content.Load<Texture2D>("Log");
+            Arrow = content.Load<Texture2D>("Jungle/Obstacles/Arrow");
+            //Log = content.Load<Texture2D>("Jungle/Obstacles/Log");
         }
 
         public Texture2D GetTexture(TextureType type)
