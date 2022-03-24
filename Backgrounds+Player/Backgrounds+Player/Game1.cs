@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Backgrounds_Player.States;
 
 namespace Backgrounds_Player
 {
@@ -21,6 +22,16 @@ namespace Backgrounds_Player
         private ObstacleHandler obstacleHandler;
         private Vector2 _camera = Vector2.Zero;
 
+        private State _currentState;
+        private State _nextState;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
+
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -33,6 +44,8 @@ namespace Backgrounds_Player
             _graphics.PreferredBackBufferWidth = ScreenWidth;
             _graphics.PreferredBackBufferHeight = ScreenHeight;
             _graphics.ApplyChanges();
+
+            IsMouseVisible = true;
 
 
             base.Initialize();
@@ -84,6 +97,8 @@ namespace Backgrounds_Player
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             TextureHandler.Instance.LoadTextures(this.Content);
+
+            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -112,6 +127,18 @@ namespace Backgrounds_Player
                 }
             }
 
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime);
+
+            _currentState.PostUpdate(gameTime);
+
+
             Window.Title = obstacleHandler.obstacles.Count().ToString();
 
             base.Update(gameTime);
@@ -127,6 +154,7 @@ namespace Backgrounds_Player
             obstacleHandler.Draw(_spriteBatch, _camera);
             _player.Draw(_spriteBatch, _camera);
             _spriteBatch.End();
+            _currentState.Draw(gameTime, _spriteBatch);
 
 
             base.Draw(gameTime);
