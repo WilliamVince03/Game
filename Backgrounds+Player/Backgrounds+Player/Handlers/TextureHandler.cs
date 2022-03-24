@@ -15,66 +15,66 @@ namespace Backgrounds_Player
         public Texture2D BoyTexture { get; set; }
         public Texture2D BoyTexture1 { get; set; }
         public Texture2D BoyTexture2 { get; set; }
-        public Texture2D PoodelTexture { get; set; }
-        public Texture2D PoodelDeath { get; set; }
+        public Texture2D WalkingPoodle { get; set; }
+        public Texture2D DeadPoodle { get; set; }
 
 
         // city
         public Texture2D Houses { get; set; }
-        public Texture2D Backhouses1 { get; set; }
-        public Texture2D Backhouses2 { get; set; }
-        public Texture2D Foreground { get; set; }
-        public Texture2D Clouds1 { get; set; }
-        public Texture2D Clouds2 { get; set; }
-        public Texture2D Skybox { get; set; }
-            //obstacles
-            public Texture2D Firepost { get; set; }
-            public Texture2D Newspaper { get; set; }
+        public Texture2D BackgroundHousesColored { get; set; }
+        public Texture2D BackgroundHousesGreys { get; set; }
+        public Texture2D CityForeground { get; set; }
+        public Texture2D CityCloudsHigh { get; set; }
+        public Texture2D CityCloudsLow { get; set; }
+        public Texture2D CitySky { get; set; }
+        //obstacles
+        public Texture2D Firepost { get; set; }
+        public Texture2D NewspaperInFlight { get; set; }
 
         // ice
-        public Texture2D Background { get; set; }
+        public Texture2D ArcticSky { get; set; }
         public Texture2D Sun { get; set; }
-        public Texture2D Clouds { get; set; }
-        public Texture2D Back { get; set; }
-        public Texture2D Middle { get; set; }
-        public Texture2D Front { get; set; }
-        public Texture2D Path { get; set; }
-            //player
-            public Texture2D Penguin { get; set; }
-            public Texture2D PenguinDeath { get; set; }
-            public Texture2D PenguinResting { get; set; }
-        public Texture2D SnowBall { get; set; }
+        public Texture2D ArcticCloud { get; set; }
+        public Texture2D ArcticBack { get; set; }
+        public Texture2D ArcticMiddle { get; set; }
+        public Texture2D ArcticClose { get; set; }
+        public Texture2D ArcticForeground { get; set; }
+        //player
+        public Texture2D WalkingPenguin { get; set; }
+        public Texture2D DeadPenguin { get; set; }
+        public Texture2D IdlePenguin { get; set; }
+        public Texture2D Snowball { get; set; }
 
         // Savannah
-        public Texture2D Sky { get; set; }
-        public Texture2D Sun1 { get; set; }
-        public Texture2D Ground { get; set; }
-        public Texture2D TreesBack { get; set; }
-        public Texture2D GrassBack { get; set; }
-        public Texture2D TreeFront { get; set; }
-        public Texture2D GrassFront { get; set; }
-        public Texture2D WalkingPath { get; set; }
-            public Texture2D KangarooDeath { get; set; }
-        public Texture2D Kangaroo { get; set; }
+        public Texture2D SavannahSky { get; set; }
+        public Texture2D SavannahSun { get; set; }
+        public Texture2D SannahGrass { get; set; }
+        public Texture2D DistantTrees { get; set; }
+        public Texture2D DistantGrass { get; set; }
+        public Texture2D CloseTree { get; set; }
+        public Texture2D CoveringGrass { get; set; }
+        public Texture2D SavannahForegrund { get; set; }
+        public Texture2D KangarooDeath { get; set; }
+        public Texture2D KangarooRun { get; set; }
         public Texture2D KangarooIdle { get; set; }
 
         // Jungle
-        public Texture2D BackGround { get; set; }
-        public Texture2D Back3 { get; set; }
-        public Texture2D Back2 { get; set; }
-        public Texture2D Back1 { get; set; }
-        public Texture2D ForeGround { get; set; }
-            //player
-            public Texture2D MonkeyDeath { get; set; }
-            public Texture2D Monkey { get; set; }
-            public Texture2D MonkeyResting { get; set; }
-            //Obstacles
-            public Texture2D Log { get; set; }
-            public Texture2D Arrow { get; set; }
+        public Texture2D BackgroundFog { get; set; }
+        public Texture2D BackgroundDistant { get; set; }
+        public Texture2D BackgroundMiddle { get; set; }
+        public Texture2D BackgroundClose { get; set; }
+        public Texture2D JungleForeground { get; set; }
+        //player
+        public Texture2D MonkeyDeath { get; set; }
+        public Texture2D MonkeyRun { get; set; }
+        public Texture2D MonkeyIdle { get; set; }
+        //Obstacles
+        public Texture2D Log { get; set; }
+        public Texture2D Arrow { get; set; }
 
 
 
-    public static TextureHandler Instance
+        public static TextureHandler Instance
         {
             get
             {
@@ -86,9 +86,10 @@ namespace Backgrounds_Player
             }
         }
 
-        private TextureHandler(){ }
+        private TextureHandler() { }
 
-        public void LoadTextures(ContentManager content) {
+        public void LoadTextures(ContentManager content)
+        {
 
             // ta bort
             BoyTexture1 = content.Load<Texture2D>("boy");
@@ -97,60 +98,63 @@ namespace Backgrounds_Player
 
 
             //city
-            Foreground = content.Load<Texture2D>("foreground");
-            Houses = content.Load<Texture2D>("houses");
-            Backhouses1 = content.Load<Texture2D>("_backhouses1");
-            Backhouses2 = content.Load<Texture2D>("backhouses2");
-            Clouds1 = content.Load<Texture2D>("clouds1 (3)");
-            Clouds2 = content.Load<Texture2D>("clouds2 (3)");
-            Skybox = content.Load<Texture2D>("skybox");
-                //obstacles
-            Firepost = content.Load<Texture2D>("firepost");
-            Newspaper = content.Load<Texture2D>("newspaper_blowing_in_the_wind_GIF");
+            CityForeground = content.Load<Texture2D>("CityForeground");
+            Houses = content.Load<Texture2D>("Houses");
+            BackgroundHousesColored = content.Load<Texture2D>("BackgroundHousesColored");
+            BackgroundHousesGreys = content.Load<Texture2D>("BackgroundHousesGreys");
+            CityCloudsHigh = content.Load<Texture2D>("CityCloudsHigh");
+            CityCloudsLow = content.Load<Texture2D>("CityCloudsLow");
+            CitySky = content.Load<Texture2D>("CitySky");
+            //obstacles
+            Firepost = content.Load<Texture2D>("Firepost");
+            NewspaperInFlight = content.Load<Texture2D>("NewspaperInFlight");
             //player
-            PoodelTexture = content.Load<Texture2D>("poodel_walking");
-            PoodelDeath = content.Load<Texture2D>("poodel_death");
+            WalkingPoodle = content.Load<Texture2D>("WalkingPoodle");
+            DeadPoodle = content.Load<Texture2D>("DeadPoodle");
 
 
-            //ice
-            Background = content.Load<Texture2D>("Lager 0");
-            Sun = content.Load<Texture2D>("Sol");
-            Clouds = content.Load<Texture2D>("Måln");
-            Back = content.Load<Texture2D>("Längst bak");
-            Middle = content.Load<Texture2D>("Fram");
-            Front = content.Load<Texture2D>("Allra längst fram");
-            Path = content.Load<Texture2D>("Springbana");
-                //player
-                Penguin = content.Load<Texture2D>("penguin_walking_sprites (2)");
-                PenguinDeath = content.Load<Texture2D>("Död pingvin");
-            PenguinResting = content.Load<Texture2D>("penguin_idle (2)");
-            SnowBall = content.Load<Texture2D>("Snowball");
+            //arctic
+            ArcticSky = content.Load<Texture2D>("ArcticSky");
+            Sun = content.Load<Texture2D>("Sol"); // Fixa rätt sol
+            ArcticCloud = content.Load<Texture2D>("ArcticCloud");
+            ArcticBack = content.Load<Texture2D>("ArcticBack");
+            ArcticMiddle = content.Load<Texture2D>("ArcticMiddle");
+            ArcticClose = content.Load<Texture2D>("ArcticClose");
+            ArcticForeground = content.Load<Texture2D>("ArcticForeground");
+            //player
+            WalkingPenguin = content.Load<Texture2D>("WalkingPenguin");
+            DeadPenguin = content.Load<Texture2D>("DeadPenguin");
+            IdlePenguin = content.Load<Texture2D>("IdlePenguin");
+            //obstacles
+            Snowball = content.Load<Texture2D>("Snowball");
 
             // Savannah
-            Sky = content.Load<Texture2D>("Himmel");
-            Sun1 = content.Load<Texture2D>("Sol");
-            Ground = content.Load<Texture2D>("Mark");
-            TreesBack = content.Load<Texture2D>("Träd längst bak2");
-            GrassBack = content.Load<Texture2D>("Extra gräs bak");
-            TreeFront= content.Load<Texture2D>("Träd2");
-            GrassFront = content.Load<Texture2D>("gräs främre träd");
-            WalkingPath = content.Load<Texture2D>("Springbana2");
-            Kangaroo = content.Load<Texture2D>("kangarooo (1)");
-            KangarooDeath = content.Load<Texture2D>("kangarooodeath (1)");
-            KangarooIdle = content.Load<Texture2D>("kangaroooidle (2)");
+            SavannahSky = content.Load<Texture2D>("SavannahSky");
+            SavannahSun = content.Load<Texture2D>("SavannahSun");
+            SannahGrass = content.Load<Texture2D>("SannahGrass");
+            DistantTrees = content.Load<Texture2D>("DistantTrees");
+            DistantGrass = content.Load<Texture2D>("DistantGrass");
+            CloseTree = content.Load<Texture2D>("CloseTree");
+            CoveringGrass = content.Load<Texture2D>("CoveringGrass");
+            SavannahForegrund = content.Load<Texture2D>("SavannahForegrund");
+            //player
+            KangarooRun = content.Load<Texture2D>("KangarooRun");
+            KangarooDeath = content.Load<Texture2D>("KangarooDeath");
+            KangarooIdle = content.Load<Texture2D>("KangarooIdle");
 
             // Jungle
-            BackGround = content.Load<Texture2D>("background");
-            Back3 = content.Load<Texture2D>("back3");
-            Back2 = content.Load<Texture2D>("back2");
-            Back1 = content.Load<Texture2D>("back1");
-            ForeGround = content.Load<Texture2D>("front");
-            MonkeyDeath = content.Load<Texture2D>("monke death (1)");// lite off
-            Monkey = content.Load<Texture2D>("Apa springer");
-            MonkeyResting = content.Load<Texture2D>("Apa vila");
+            BackgroundFog = content.Load<Texture2D>("BackgroundFog");
+            BackgroundDistant = content.Load<Texture2D>("BackgroundDistant");
+            BackgroundMiddle = content.Load<Texture2D>("BackgroundMiddle");
+            BackgroundClose = content.Load<Texture2D>("BackgroundClose");
+            JungleForeground = content.Load<Texture2D>("JungleForeground");
+            //player
+            MonkeyDeath = content.Load<Texture2D>("MonkeyDeath");// lite off
+            MonkeyRun = content.Load<Texture2D>("MonkeyRun");
+            MonkeyIdle = content.Load<Texture2D>("MonkeyIdle");
             //obstacles
-            Arrow = content.Load<Texture2D>("arrow (5)");
-                //Log = content.Load<Texture2D>("stock");
+            Arrow = content.Load<Texture2D>("Arrow");
+            //Log = content.Load<Texture2D>("Log");
         }
 
         public Texture2D GetTexture(TextureType type)
@@ -188,20 +192,20 @@ namespace Backgrounds_Player
             return GetPlayerTextureAnimationFrames();
         }
 
-        public Texture2D GetPlayerTexture() 
+        public Texture2D GetPlayerTexture()
         {
             switch (Theme)
             {
                 case 1:
-                    return PoodelTexture;
+                    return WalkingPoodle;
                 case 2:
-                    return Penguin;
+                    return WalkingPenguin;
                 case 3:
-                    return Kangaroo;
+                    return KangarooRun;
                 case 4:
-                    return Monkey;
+                    return MonkeyRun;
                 default:
-                    return Monkey;
+                    return MonkeyRun;
             }
         }
         public Texture2D GetPlayerDeathTexture()
@@ -209,15 +213,15 @@ namespace Backgrounds_Player
             switch (Theme)
             {
                 case 1:
-                    return PoodelDeath;
+                    return DeadPoodle;
                 case 2:
-                    return PenguinDeath;
+                    return DeadPenguin;
                 case 3:
                     return KangarooDeath;
                 case 4:
                     return MonkeyDeath;
                 default:
-                    return Monkey;
+                    return MonkeyRun;
             }
         }
         public Texture2D GetPlayerRestingTexture()
@@ -225,15 +229,15 @@ namespace Backgrounds_Player
             switch (Theme)
             {
                 case 1:
-                    return PoodelTexture;
+                    return WalkingPoodle;
                 case 2:
-                    return PenguinResting;
+                    return IdlePenguin;
                 case 3:
                     return KangarooIdle;
                 case 4:
-                    return MonkeyResting;
+                    return MonkeyIdle;
                 default:
-                    return MonkeyResting;
+                    return MonkeyIdle;
             }
         }
         public Texture2D GetPlayerJumpingTexture()
@@ -241,18 +245,18 @@ namespace Backgrounds_Player
             switch (Theme)
             {
                 case 1:
-                    return PoodelTexture;
+                    return WalkingPoodle;
                 case 2:
-                    return Penguin;
+                    return WalkingPenguin;
                 case 3:
-                    return Kangaroo;
+                    return KangarooRun;
                 case 4:
-                    return Monkey;
+                    return MonkeyRun;
                 default:
-                    return Monkey;
+                    return MonkeyRun;
             }
         }
-            public int GetPlayerTextureAnimationFrames()
+        public int GetPlayerTextureAnimationFrames()
         {
             switch (Theme)
             {
@@ -321,10 +325,10 @@ namespace Backgrounds_Player
             switch (Theme)
             {
                 case 1:
-                    return Newspaper;//Firepost;
+                    return NewspaperInFlight;//Firepost;
                 case 2:
                     //return Firepost;
-                    return SnowBall;
+                    return Snowball;
                 case 4:
                     return Arrow;
                 default:
