@@ -51,7 +51,7 @@ namespace Backgrounds_Player
             base.Initialize();
 
             //theme = rnd.Next(1, 5);
-            theme = 3;
+            theme = 1;
 
             Setup();
             backgroundHandler = new BackgroundHandler(theme);
@@ -91,6 +91,7 @@ namespace Backgrounds_Player
                 NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.PlayerDeath),
                 State = PlayerState.Dying
             });
+            _player.JumpSpeed = TextureHandler.Instance.GetPlayerJumpSpeed();
         }
 
         protected override void LoadContent()

@@ -253,7 +253,7 @@
 /processorParam:TextureFormat=Color
 /build:City/Obstacles/Firepost.png
 
-#begin City/Obstacles/NewspaperInFlight.png
+#begin City/Obstacles/Newspaper.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -263,7 +263,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:City/Obstacles/NewspaperInFlight.png
+/build:City/Obstacles/Newspaper.png
+
+#begin City/Obstacles/Newspaper.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:City/Obstacles/Newspaper.png
 
 #begin City/Player/DeadPoodle.png
 /importer:TextureImporter
@@ -523,6 +535,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Savannah/Background/SavannahSun.png
+
+#begin Savannah/Obstacles/Tumbleweed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Savannah/Obstacles/Tumbleweed.png
 
 #begin Savannah/Player/KangarooDeath.png
 /importer:TextureImporter

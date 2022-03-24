@@ -20,6 +20,7 @@ namespace Backgrounds_Player
     {
         public Vector2 Velocity;
         private PlayerState state = PlayerState.Idle;
+        public float JumpSpeed { get; set; } = 8f;
 
         public List<PlayerTexture> Textures { get; set; } = new List<PlayerTexture>();
 
@@ -48,32 +49,26 @@ namespace Backgrounds_Player
             else            // bara att ta bort else om man inte ska kunna stå stilla!
                 //Velocity.X = 0f;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && state != PlayerState.Jumping || Keyboard.GetState().IsKeyDown(Keys.Up) && state != PlayerState.Jumping)
+            if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && state != PlayerState.Jumping)
             {
                 ChangeState(PlayerState.Jumping);
                 Position.Y -= 10f;
-                Velocity.Y = -5f;
-                state = PlayerState.Jumping;
+                Velocity.Y = -JumpSpeed;
             }
 
-            if (Position.Y >= 670 - Rectangle.Height && state == PlayerState.Jumping) // 720 tot / 50 från marken / >670-heigth
+            if (Position.Y >= 670 - Rectangle.Height)
             {
-                ChangeState(PlayerState.Running);
-                state = PlayerState.Running;
-            }
-
-            if (state == PlayerState.Jumping) 
-                Velocity.Y += 0.08f;
-            else 
+                if (state == PlayerState.Jumping)
+                {
+                    ChangeState(PlayerState.Running);
+                }
                 Velocity.Y = 0f;
+            }
+            else
+                Velocity.Y += 0.25f;
+
 
             Position += Velocity;
-
-            if (state == PlayerState.Dying && Position.Y <= 670 - Rectangle.Height)
-            {
-                Position.Y += 10f;
-                Velocity.Y = -5f;
-            }
 
             if (state == PlayerState.Dying) Repeatable = false;
             else Repeatable = true;
