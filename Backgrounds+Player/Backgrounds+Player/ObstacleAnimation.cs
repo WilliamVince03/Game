@@ -39,12 +39,10 @@ namespace Backgrounds_Player
                 Position = new Vector2(positionx, Game1.ScreenHeight - texture.Height - 50);
             else
             {
-                switch (rnd.Next(1, 11))
-                {
-                    case int n when (1 <= n && n >= 5): pos = 600; break;
-                    case int n when 6 <= n && n >= 9: pos = 550; break;
-                    default: pos = 400; break;
-                }
+                var n = rnd.Next(1, 100);
+                if (n < 70) pos = 600;
+                else if(n < 90) pos = 550;
+                else pos = 400;
                 Position = new Vector2(positionx, pos);
             }
         }

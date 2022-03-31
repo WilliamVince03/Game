@@ -62,19 +62,18 @@ namespace Backgrounds_Player
             }
             _numOfFrames = numOfFrames;
             _frameWidth = (_texture.Width / numOfFrames);
-            //int fh = TextureHandler.Instance.GetPlayerTexture().Height;
             if (frameHeight < 0) _frameHeight = _texture.Height;
             else
             {
                 _frameHeight = frameHeight;
             }
         }
-        public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _frameWidth-50, _frameHeight);
+        public Rectangle Rectangle => new Rectangle((int)Position.X+50, (int)Position.Y, _frameWidth, _frameHeight);
 
         public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
             //spriteBatch.Draw(_texture, Position, new Rectangle(_frameWidth * _currentFrame, Row * _frameHeight, _frameWidth, _frameHeight), Color.White, 0, new Vector2(_frameWidth / 2, _frameHeight / 2), 1, Orientation, Layer);
-            spriteBatch.Draw(_texture, Position - cameraPosition, new Rectangle(_frameWidth * _currentFrame, Row * _frameHeight, _frameWidth, _frameHeight), Color.White, 0, new Vector2(0, 0), 1, Orientation, Layer);
+            spriteBatch.Draw(_texture, Position - cameraPosition + new Vector2(50, 0), new Rectangle(_frameWidth * _currentFrame, Row * _frameHeight, _frameWidth, _frameHeight), Color.White, 0, new Vector2(0, 0), 1, Orientation, Layer);
         }
     }
 }

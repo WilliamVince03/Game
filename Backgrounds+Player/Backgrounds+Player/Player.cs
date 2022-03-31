@@ -21,7 +21,7 @@ namespace Backgrounds_Player
         public Vector2 Velocity;
         private PlayerState state = PlayerState.Idle;
         public float JumpSpeed { get; set; } = 8f;
-
+        private int _ticks = 1000;
         public List<PlayerTexture> Textures { get; set; } = new List<PlayerTexture>();
 
         public Player(Texture2D texture, int numOfFrames)
@@ -73,7 +73,14 @@ namespace Backgrounds_Player
             if (state == PlayerState.Dying) Repeatable = false;
             else Repeatable = true;
 
-            base.Update();
+
+
+            if (_ticks-- < 0)
+            {
+                Velocity.X += 0.001f;
+            }
+
+                base.Update();
         }
     }
 }

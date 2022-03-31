@@ -23,7 +23,7 @@ namespace Backgrounds_Player
             {
                 case 1:
                     //City
-                    var newspaper = new Obstacles(texture, numOfFrames, positionx, true);
+                    var newspaper = new Obstacles(texture, numOfFrames, positionx, true, false);
                     obstacles.Add(newspaper);
                     break;
                 case 2:
