@@ -35,14 +35,15 @@ namespace Backgrounds_Player
         public ObstacleAnimation(Texture2D texture, int positionx, bool placeBottom = true)
         {
             _texture = texture;
+            var bodyheight = Game1.ScreenHeight - texture.Height;
             if (placeBottom)
-                Position = new Vector2(positionx, Game1.ScreenHeight - texture.Height - 50);
+                Position = new Vector2(positionx, bodyheight - 40);//50
             else
             {
                 var n = rnd.Next(1, 100);
-                if (n < 70) pos = 600;
-                else if(n < 90) pos = 550;
-                else pos = 400;
+                if (n < 70) pos = bodyheight - 50;
+                else if (n < 90) pos = bodyheight - 70;
+                else pos = bodyheight - texture.Height*5; //200 bra för duckning
                 Position = new Vector2(positionx, pos);
             }
         }

@@ -50,12 +50,12 @@ namespace Backgrounds_Player
 
             base.Initialize();
 
-            //theme = rnd.Next(1, 5);
-            theme = 2;
+            theme = rnd.Next(1, 5);
+            //theme = 1;
 
             Setup();
             backgroundHandler = new BackgroundHandler(theme);
-            obstacleHandler = new ObstacleHandler(theme, 2000); // !!!!!!
+            obstacleHandler = new ObstacleHandler(theme, 2000); 
 
         }
         void Setup()
@@ -64,7 +64,6 @@ namespace Backgrounds_Player
             _player = new Player(TextureHandler.Instance.GetTexture(TextureType.PlayerResting), TextureHandler.Instance.GetTextureAnimationFrames(TextureType.PlayerResting))
             {
                 Position = new Vector2(50, ScreenHeight - TextureHandler.Instance.GetPlayerTexture().Height - 50),
-                //Position = new Vector2(0, 200),
                 Layer = 1f,
             };
             _player.Textures.Add(new PlayerTexture
@@ -124,7 +123,6 @@ namespace Backgrounds_Player
                 {
                     _player.ChangeState(PlayerState.Dying);
                     _player.Velocity = Vector2.Zero;
-                    //_player.Repeatable = false;
                 }
             }
 
@@ -140,7 +138,7 @@ namespace Backgrounds_Player
             _currentState.PostUpdate(gameTime);
 
 
-            Window.Title = obstacleHandler.obstacles.Count().ToString();
+            Window.Title = _player.Velocity.X.ToString();
 
             base.Update(gameTime);
         }

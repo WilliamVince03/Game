@@ -26,12 +26,10 @@ namespace Backgrounds_Player
             _texture = texture;
         }
 
-        //private Texture2D _texture;
         private int _ticks = 0;
         private int _frameWidth = 0;
         private int _frameHeight = 0;
         private int _numOfFrames = 0;
-        //public Vector2 Position = new Vector2(0, Game1.ScreenHeight - _texture.Height);
         public Vector2 Position = new Vector2(0, 500);
 
         public SpriteEffects Orientation = SpriteEffects.None;
@@ -41,7 +39,7 @@ namespace Backgrounds_Player
         public bool Repeatable { get; set; } = true;
 
 
-        public void Update() //bool repeatable = true
+        public void Update() 
         {
             if (_ticks-- < 0)
             {
@@ -72,7 +70,6 @@ namespace Backgrounds_Player
 
         public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
-            //spriteBatch.Draw(_texture, Position, new Rectangle(_frameWidth * _currentFrame, Row * _frameHeight, _frameWidth, _frameHeight), Color.White, 0, new Vector2(_frameWidth / 2, _frameHeight / 2), 1, Orientation, Layer);
             spriteBatch.Draw(_texture, Position - cameraPosition + new Vector2(50, 0), new Rectangle(_frameWidth * _currentFrame, Row * _frameHeight, _frameWidth, _frameHeight), Color.White, 0, new Vector2(0, 0), 1, Orientation, Layer);
         }
     }
