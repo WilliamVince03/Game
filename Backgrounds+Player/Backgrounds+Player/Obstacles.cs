@@ -9,9 +9,8 @@ namespace Backgrounds_Player
 {
     public class Obstacles : ObstacleAnimation
     {
-        private bool _constantSpeed; //
+        private bool _constantSpeed; 
 
-        //private Texture2D _texture;
         public Obstacles(Texture2D texture, int numOfFrames, int positionx, bool constantSpeed = false, bool placeBottom = true)
             : base(texture, positionx, placeBottom)
         {
@@ -27,15 +26,5 @@ namespace Backgrounds_Player
             if (_constantSpeed) Position.X -= 3;
         }
 
-        //public Rectangle Rectangle => new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
-
-        //public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
-        //{
-
-                //spriteBatch.Draw(_texture, Position - cameraPosition, null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 1);
-
-        //}
     }
 }
-
-// här är varje del i listan

@@ -66,7 +66,6 @@ namespace Backgrounds_Player
             _player = new Player(TextureHandler.Instance.GetTexture(TextureType.PlayerResting), TextureHandler.Instance.GetTextureAnimationFrames(TextureType.PlayerResting))
             {
                 Position = new Vector2(50, ScreenHeight - TextureHandler.Instance.GetPlayerTexture().Height - 50),
-                //Position = new Vector2(0, 200),
                 Layer = 1f,
             };
             _player.Textures.Add(new PlayerTexture
@@ -93,6 +92,7 @@ namespace Backgrounds_Player
                 NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.PlayerDeath),
                 State = PlayerState.Dying
             });
+            _player.JumpSpeed = TextureHandler.Instance.GetPlayerJumpSpeed();
         }
 
         protected override void LoadContent()
@@ -128,7 +128,6 @@ namespace Backgrounds_Player
                 {
                     _player.ChangeState(PlayerState.Dying);
                     _player.Velocity = Vector2.Zero;
-                    //_player.Repeatable = false;
                 }
             }
 
@@ -144,7 +143,7 @@ namespace Backgrounds_Player
             _currentState.PostUpdate(gameTime);
 
 
-            Window.Title = obstacleHandler.obstacles.Count().ToString();
+            Window.Title = _player.Velocity.X.ToString();
 
             base.Update(gameTime);
         }

@@ -28,7 +28,7 @@ namespace Backgrounds_Player
             {
                 case 1:
                     //City
-                    var newspaper = new Obstacles(texture, numOfFrames, positionx, true);
+                    var newspaper = new Obstacles(texture, numOfFrames, positionx, true, false);
                     obstacles.Add(newspaper);
                     break;
                 case 2:
@@ -36,9 +36,11 @@ namespace Backgrounds_Player
                     var snowball = new Obstacles(texture, numOfFrames, positionx, true, false);
                     obstacles.Add(snowball);
                     break;
-                //case 3:
-                //    // Savannah
-                //    break;
+                case 3:
+                    //savannah
+                    var tumbleweed = new Obstacles(texture, numOfFrames, positionx, true);
+                    obstacles.Add(tumbleweed);
+                    break;
                 case 4:
                     //djungle
                     var arrow = new Obstacles(texture, numOfFrames, positionx, true, false);

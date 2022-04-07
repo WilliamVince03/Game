@@ -29,7 +29,7 @@ namespace Backgrounds_Player
         public Texture2D CitySky { get; set; }
         //obstacles
         public Texture2D Firepost { get; set; }
-        public Texture2D NewspaperInFlight { get; set; }
+        public Texture2D Newspaper { get; set; }
 
         // ice
         public Texture2D ArcticSky { get; set; }
@@ -57,6 +57,7 @@ namespace Backgrounds_Player
         public Texture2D KangarooDeath { get; set; }
         public Texture2D KangarooRun { get; set; }
         public Texture2D KangarooIdle { get; set; }
+        public Texture2D Tumbleweed { get; set; }
 
         // Jungle
         public Texture2D BackgroundFog { get; set; }
@@ -107,7 +108,7 @@ namespace Backgrounds_Player
             CitySky = content.Load<Texture2D>("City/Background/CitySky");
             //obstacles
             Firepost = content.Load<Texture2D>("City/Obstacles/Firepost");
-            NewspaperInFlight = content.Load<Texture2D>("City/Obstacles/NewspaperInFlight");
+            Newspaper = content.Load<Texture2D>("City/Obstacles/Newspaper");
             //player
             WalkingPoodle = content.Load<Texture2D>("City/Player/WalkingPoodle");
             DeadPoodle = content.Load<Texture2D>("City/Player/DeadPoodle");
@@ -141,6 +142,8 @@ namespace Backgrounds_Player
             KangarooRun = content.Load<Texture2D>("Savannah/Player/KangarooRun");
             KangarooDeath = content.Load<Texture2D>("Savannah/Player/KangarooDeath");
             KangarooIdle = content.Load<Texture2D>("Savannah/Player/KangarooIdle");
+            //obstacles
+            Tumbleweed = content.Load<Texture2D>("Savannah/Obstacles/Tumbleweed");
 
             // Jungle
             BackgroundFog = content.Load<Texture2D>("Jungle/Background/BackgroundFog");
@@ -325,10 +328,12 @@ namespace Backgrounds_Player
             switch (Theme)
             {
                 case 1:
-                    return NewspaperInFlight;//Firepost;
+                    return Newspaper;//Firepost;
                 case 2:
                     //return Firepost;
                     return Snowball;
+                case 3:
+                    return Tumbleweed;
                 case 4:
                     return Arrow;
                 default:
@@ -344,11 +349,28 @@ namespace Backgrounds_Player
                 case 2:
                     return 12;
                 case 3:
-                    return 1;
+                    return 8;
                 case 4:
                     return 5;
                 default:
                     return 1;
+            }
+        }
+
+        public float GetPlayerJumpSpeed()
+        {
+            switch (Theme)
+            {
+                case 1:
+                    return 6f;
+                case 2:
+                    return 8f;
+                case 3:
+                    return 11f;
+                case 4:
+                    return 8f;
+                default:
+                    return 8f;
             }
         }
 
