@@ -83,7 +83,22 @@ namespace Backgrounds_Player
             _player.Textures.Add(new PlayerTexture
             {
                 Texture = TextureHandler.Instance.GetTexture(TextureType.Player),
+                //Texture2 = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
                 NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Player),
+                State = PlayerState.Running
+            });
+            _player.Textures.Add(new PlayerTexture
+            {
+                Texture = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
+                //Texture2 = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
+                NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Player, 1),
+                State = PlayerState.Running
+            });
+            _player.Textures.Add(new PlayerTexture
+            {
+                Texture = TextureHandler.Instance.GetTexture(TextureType.Player, 2),
+                //Texture2 = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
+                NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Player, 2),
                 State = PlayerState.Running
             });
             _player.Textures.Add(new PlayerTexture
@@ -93,6 +108,7 @@ namespace Backgrounds_Player
                 State = PlayerState.Dying
             });
             _player.JumpSpeed = TextureHandler.Instance.GetPlayerJumpSpeed();
+            _player.AnimationSpeed = TextureHandler.Instance.GetPlayerAnimationSpeed();
         }
 
         protected override void LoadContent()
@@ -127,7 +143,7 @@ namespace Backgrounds_Player
                 if(_player.Rectangle.Intersects(obstacle.Rectangle))
                 {
                     _player.ChangeState(PlayerState.Dying);
-                    _player.Velocity = Vector2.Zero;
+                    _player.Velocity.X = 0;
                 }
             }
 

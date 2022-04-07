@@ -34,10 +34,11 @@ namespace Backgrounds_Player
         }
         public void ChangeState(PlayerState newState)
         {
-            var playerTexture = Textures.FirstOrDefault(x => x.State == newState);
-
-            if (playerTexture != null)
+            var playerTextures = Textures.Where(x => x.State == newState).ToArray();
+            if (playerTextures.Any())
             {
+                var rnd = new Random();
+                var playerTexture = playerTextures[rnd.Next(0,playerTextures.Length)];
                 SetTexture(playerTexture.NumOfFrames, -1, playerTexture.Texture);
             }
             state = newState;
@@ -75,8 +76,8 @@ namespace Backgrounds_Player
 
                 Position += Velocity;
 
-                if (state == PlayerState.Dying) Repeatable = false;
-                else Repeatable = true;
+            if (state == PlayerState.Dying || state== PlayerState.Jumping) Repeatable = false;
+            else Repeatable = true;
 
 
 
