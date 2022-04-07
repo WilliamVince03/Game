@@ -133,6 +133,42 @@
 /processorParam:TextureFormat=Color
 /build:Arctic/Player/IdlePenguin.png
 
+#begin Arctic/Player/PenguinBackflip.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Arctic/Player/PenguinBackflip.png
+
+#begin Arctic/Player/PenguinWalking2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Arctic/Player/PenguinWalking2.png
+
+#begin Arctic/Player/penguinWalkingAlternate.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Arctic/Player/penguinWalkingAlternate.png
+
 #begin Arctic/Player/WalkingPenguin.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -265,18 +301,6 @@
 /processorParam:TextureFormat=Color
 /build:City/Obstacles/Newspaper.png
 
-#begin City/Obstacles/Newspaper.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:City/Obstacles/Newspaper.png
-
 #begin City/Player/DeadPoodle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -391,18 +415,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Jungle/Obstacles/Arrow.png
-
-#begin Jungle/Obstacles/Log.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Jungle/Obstacles/Log.png
 
 #begin Jungle/Player/MonkeyDeath.png
 /importer:TextureImporter

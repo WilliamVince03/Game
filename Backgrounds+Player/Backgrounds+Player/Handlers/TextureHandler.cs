@@ -30,6 +30,7 @@ namespace Backgrounds_Player
         //obstacles
         public Texture2D Firepost { get; set; }
         public Texture2D Newspaper { get; set; }
+        public Texture2D Taxi { get; set; }
 
         // ice
         public Texture2D ArcticSky { get; set; }
@@ -41,8 +42,11 @@ namespace Backgrounds_Player
         public Texture2D ArcticForeground { get; set; }
         //player
         public Texture2D WalkingPenguin { get; set; }
+        public Texture2D WalkingPenguin2 { get; set; }
+        public Texture2D WalkingPenguin3 { get; set; }
         public Texture2D DeadPenguin { get; set; }
         public Texture2D IdlePenguin { get; set; }
+        public Texture2D JumpingPenguin { get; set; }
         public Texture2D Snowball { get; set; }
 
         // Savannah
@@ -58,6 +62,8 @@ namespace Backgrounds_Player
         public Texture2D KangarooRun { get; set; }
         public Texture2D KangarooIdle { get; set; }
         public Texture2D Tumbleweed { get; set; }
+        public Texture2D BurnBarrel { get; set; }
+        public Texture2D DeadBush { get; set; }
 
         // Jungle
         public Texture2D BackgroundFog { get; set; }
@@ -70,8 +76,8 @@ namespace Backgrounds_Player
         public Texture2D MonkeyRun { get; set; }
         public Texture2D MonkeyIdle { get; set; }
         //Obstacles
-        public Texture2D Log { get; set; }
         public Texture2D Arrow { get; set; }
+        public Texture2D Stone { get; set; }
 
 
 
@@ -109,6 +115,7 @@ namespace Backgrounds_Player
             //obstacles
             Firepost = content.Load<Texture2D>("City/Obstacles/Firepost");
             Newspaper = content.Load<Texture2D>("City/Obstacles/Newspaper");
+            //Taxi = content.Load<Texture2D>("City/Obstacles/taxi");
             //player
             WalkingPoodle = content.Load<Texture2D>("City/Player/WalkingPoodle");
             DeadPoodle = content.Load<Texture2D>("City/Player/DeadPoodle");
@@ -124,10 +131,13 @@ namespace Backgrounds_Player
             ArcticForeground = content.Load<Texture2D>("Arctic/Background/ArcticForeground");
             //player
             WalkingPenguin = content.Load<Texture2D>("Arctic/Player/WalkingPenguin");
+            WalkingPenguin2 = content.Load<Texture2D>("Arctic/Player/PenguinWalking2");//pingvin 2
+            WalkingPenguin3 = content.Load<Texture2D>("Arctic/Player/PenguinWalkingAlternate");//pingvin 3
             DeadPenguin = content.Load<Texture2D>("Arctic/Player/DeadPenguin");
             IdlePenguin = content.Load<Texture2D>("Arctic/Player/IdlePenguin");
+            JumpingPenguin = content.Load<Texture2D>("Arctic/Player/PenguinBackflip");
             //obstacles
-            Snowball = content.Load<Texture2D>("Arctic/Obstacles/Snowball");
+            Snowball = content.Load<Texture2D>("Arctic/Obstacles/Snowball"); // för stor och bakofram
 
             // Savannah
             SavannahSky = content.Load<Texture2D>("Savannah/Background/SavannahSky");
@@ -144,6 +154,9 @@ namespace Backgrounds_Player
             KangarooIdle = content.Load<Texture2D>("Savannah/Player/KangarooIdle");
             //obstacles
             Tumbleweed = content.Load<Texture2D>("Savannah/Obstacles/Tumbleweed");
+            //BurnBarrel = content.Load<Texture2D>("Savannah/Obstacles/burnbarrel");
+            //DeadBush = content.Load<Texture2D>("Savannah/Obstacles/DeadBush");
+
 
             // Jungle
             BackgroundFog = content.Load<Texture2D>("Jungle/Background/BackgroundFog");
@@ -157,17 +170,17 @@ namespace Backgrounds_Player
             MonkeyIdle = content.Load<Texture2D>("Jungle/Player/MonkeyIdle");
             //obstacles
             Arrow = content.Load<Texture2D>("Jungle/Obstacles/Arrow");
-            //Log = content.Load<Texture2D>("Jungle/Obstacles/Log");
+            //Stone = content.Load<Texture2D>("Jungle/Obstacles/stone");
         }
 
-        public Texture2D GetTexture(TextureType type)
+        public Texture2D GetTexture(TextureType type, int v = 0) ///
         {
             switch (type)
             {
                 case TextureType.Player:
-                    return GetPlayerTexture();
+                    return GetPlayerTexture(v);
                 case TextureType.Obstacle:
-                    return GetObsticleTexture();
+                    return GetObsticleTexture(v);
                 case TextureType.PlayerDeath:
                     return GetPlayerDeathTexture();
                 case TextureType.PlayerResting:
@@ -177,12 +190,12 @@ namespace Backgrounds_Player
             }
             return GetPlayerTexture();
         }
-        public int GetTextureAnimationFrames(TextureType type)
+        public int GetTextureAnimationFrames(TextureType type, int v = 0) /////
         {
             switch (type)
             {
                 case TextureType.Player:
-                    return GetPlayerTextureAnimationFrames();
+                    return GetPlayerTextureAnimationFrames(v);
                 case TextureType.PlayerDeath:
                     return GetPlayerDeathTextureAnimationFrames();
                 case TextureType.PlayerResting:
@@ -190,18 +203,20 @@ namespace Backgrounds_Player
                 case TextureType.PlayerJumping:
                     return GetPlayerJumpingTextureAnimationFrames();
                 case TextureType.Obstacle:
-                    return GetObstacleTextureAnimationFrames();
+                    return GetObstacleTextureAnimationFrames(v);
             }
             return GetPlayerTextureAnimationFrames();
         }
 
-        public Texture2D GetPlayerTexture()
+        public Texture2D GetPlayerTexture(int v = 0)
         {
             switch (Theme)
             {
                 case 1:
                     return WalkingPoodle;
                 case 2:
+                    if (v == 1) return WalkingPenguin2;
+                    if (v == 2) return WalkingPenguin3;
                     return WalkingPenguin;
                 case 3:
                     return KangarooRun;
@@ -250,7 +265,7 @@ namespace Backgrounds_Player
                 case 1:
                     return WalkingPoodle;
                 case 2:
-                    return WalkingPenguin;
+                    return JumpingPenguin; ///
                 case 3:
                     return KangarooRun;
                 case 4:
@@ -259,13 +274,14 @@ namespace Backgrounds_Player
                     return MonkeyRun;
             }
         }
-        public int GetPlayerTextureAnimationFrames()
+        public int GetPlayerTextureAnimationFrames(int v = 0)
         {
             switch (Theme)
             {
                 case 1:
                     return 6;
                 case 2:
+                    if (v == 2) return 4;
                     return 6;
                 case 3:
                     return 4;
@@ -314,7 +330,7 @@ namespace Backgrounds_Player
                 case 1:
                     return 6;
                 case 2:
-                    return 6;
+                    return 13;
                 case 3:
                     return 4;
                 case 4:
@@ -323,46 +339,64 @@ namespace Backgrounds_Player
                     return 4;
             }
         }
-        public Texture2D GetObsticleTexture()
+        public Texture2D GetObsticleTexture(int v = 0) ////////////////
         {
             switch (Theme)
             {
                 case 1:
-                    return Newspaper;//Firepost;
+                    if (v == 1) return Firepost;
+                    //if (v == 2) return Taxi;
+                    return Newspaper;
                 case 2:
-                    //return Firepost;
                     return Snowball;
                 case 3:
+                    //if (v == 1) return BurnBarrel;
+                    //if (v == 2) return DeadBush;
                     return Tumbleweed;
                 case 4:
+                    //if (v == 1) return Stone;
                     return Arrow;
                 default:
-                    return BoyTexture;
+                    return Tumbleweed;
             }
         }
-        public int GetObstacleTextureAnimationFrames()
+        public int GetObstacleTextureAnimationFrames(int v = 0) ///////////
         {
             switch (Theme)
             {
                 case 1:
+                    if (v == 1) return 1;
+                    //if (v == 2) return 1;
                     return 17;
                 case 2:
                     return 12;
                 case 3:
+                    //if (v == 1) return 6;
+                    //if (v == 2) return 1;
                     return 8;
                 case 4:
+                    //if (v == 1) return 1;
                     return 5;
                 default:
                     return 1;
             }
         }
 
-        public float GetPlayerJumpSpeed()
+        public int GetPlayerAnimationSpeed()
+        {
+            switch (Theme)
+            {
+                case 2: return 5;
+                default: return 10;
+            }
+        }
+
+            public float GetPlayerJumpSpeed()
         {
             switch (Theme)
             {
                 case 1:
-                    return 6f;
+                    return 9f; // krävs 9 för att hoppa över firepost // 6 för tidning
                 case 2:
                     return 8f;
                 case 3:
