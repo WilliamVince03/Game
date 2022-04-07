@@ -2,6 +2,7 @@
 using System;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Backgrounds_Player
 {
@@ -86,7 +87,6 @@ namespace Backgrounds_Player
         public Texture2D DangerPlant { get; set; }
 
 
-
         public static TextureHandler Instance
         {
             get
@@ -121,7 +121,7 @@ namespace Backgrounds_Player
             //obstacles
             Firepost = content.Load<Texture2D>("City/Obstacles/Firepost");
             Newspaper = content.Load<Texture2D>("City/Obstacles/Newspaper");
-            //Taxi = content.Load<Texture2D>("City/Obstacles/taxi");
+            //Taxi = content.Load<Texture2D>("Idle/Obstacles/taxi");
             //player
             WalkingPoodle = content.Load<Texture2D>("City/Player/WalkingPoodle");
             DeadPoodle = content.Load<Texture2D>("City/Player/DeadPoodle");
@@ -199,6 +199,7 @@ namespace Backgrounds_Player
             }
             return GetPlayerTexture();
         }
+
         public int GetTextureAnimationFrames(TextureType type, int v = 0) /////
         {
             switch (type)

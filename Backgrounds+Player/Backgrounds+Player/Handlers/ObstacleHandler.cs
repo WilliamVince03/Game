@@ -33,7 +33,7 @@ namespace Backgrounds_Player
             switch (theme)
             {
                 case 1:
-                    //City
+                    //Idle
                     var r = rnd.NextDouble();
                     if (r < .5)
                     {

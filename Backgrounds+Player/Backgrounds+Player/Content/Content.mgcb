@@ -770,6 +770,36 @@
 /processorParam:TextureFormat=Color
 /build:Savannah/Player/KangarooRun.png
 
+#begin SoundEffects/Jungle/MonkeyDeathSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Jungle/MonkeyDeathSound.wav
+
+#begin SoundEffects/Jungle/MonkeyJumpingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Jungle/MonkeyJumpingSound.wav
+
+#begin SoundEffects/Jungle/MonkeyJumpingSound2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Jungle/MonkeyJumpingSound2.wav
+
+#begin SoundEffects/Jungle/MonkeyJumpingSound3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Jungle/MonkeyJumpingSound3.wav
+
+#begin SoundEffects/Jungle/MonkeyJumpingSound4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Jungle/MonkeyJumpingSound4.wav
+
 #begin SoundEffects/tjoho.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

@@ -20,7 +20,7 @@ namespace Backgrounds_Player
     public class Player : PlayerAnimation
     {
         public Vector2 Velocity;
-        private PlayerState state = PlayerState.Idle;
+        public PlayerState State = PlayerState.Idle; // helst som private med...
         public float JumpSpeed { get; set; } = 8f;
         private int _ticks = 1000;
         public bool key { get; set; } = false;
@@ -41,7 +41,7 @@ namespace Backgrounds_Player
                 var playerTexture = playerTextures[rnd.Next(0,playerTextures.Length)];
                 SetTexture(playerTexture.NumOfFrames, -1, playerTexture.Texture);
             }
-            state = newState;
+            State = newState;
         }
         public new void Update()
         {
@@ -55,16 +55,16 @@ namespace Backgrounds_Player
                 else            // bara att ta bort else om man inte ska kunna stå stilla!
                                 //Velocity.X = 0f;
 
-                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && state != PlayerState.Jumping)
-                {
-                    ChangeState(PlayerState.Jumping);
-                    Position.Y -= 10f;
-                    Velocity.Y = -JumpSpeed;
-                }
+                //if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && State != PlayerState.Jumping)
+                //{
+                //    ChangeState(PlayerState.Jumping);
+                //    Position.Y -= 10f;
+                //    Velocity.Y = -JumpSpeed;
+                //}
 
                 if (Position.Y >= 670 - Rectangle.Height)
                 {
-                    if (state == PlayerState.Jumping)
+                    if (State == PlayerState.Jumping)
                     {
                         ChangeState(PlayerState.Running);
                     }
@@ -76,7 +76,7 @@ namespace Backgrounds_Player
 
                 Position += Velocity;
 
-            if (state == PlayerState.Dying || state== PlayerState.Jumping) Repeatable = false;
+            if (State == PlayerState.Dying || State== PlayerState.Jumping) Repeatable = false;
             else Repeatable = true;
 
 

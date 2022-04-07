@@ -30,13 +30,11 @@ namespace Backgrounds_Player
         private State _nextState;
 
         private Song _lobbyMusic;
-        private List<SoundEffect> _soundEffects;
+        private List<SoundEffects> _soundEffects { get; set; } = new List<SoundEffects>();
 
-
-
-        //public void ChangeState(State state)
+        //public void ChangeState(State State)
         //{
-        //    _nextState = state;
+        //    _nextState = State;
         //}
 
 
@@ -45,9 +43,6 @@ namespace Backgrounds_Player
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
-            //sound
-            _soundEffects = new List<SoundEffect>();
         }
 
         protected override void Initialize()
@@ -115,6 +110,27 @@ namespace Backgrounds_Player
             _player.AnimationSpeed = TextureHandler.Instance.GetPlayerAnimationSpeed();
         }
 
+        public class SoundEffects
+        {
+            public SoundEffect SoundEffect { get; set; }
+            public SoundState State { get; set; }
+            public SoundTheme Theme { get; set; }
+
+        }
+        private SoundTheme getTheme()
+        {
+            switch (_theme)
+            {
+                case 1: return SoundTheme.City;
+                case 2: return SoundTheme.Arctic;
+                case 3: return SoundTheme.Savannah;
+                case 4: return SoundTheme.Jungle;
+                default: return SoundTheme.City; // måste
+            }
+        }
+        public enum SoundState { Idle, Running, Jumping, Dying }
+        public enum SoundTheme { City, Arctic, Savannah, Jungle }
+
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -123,11 +139,40 @@ namespace Backgrounds_Player
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
             _lobbyMusic = Content.Load<Song>("Music/Astro2");
-            _soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/tjoho"));
+            _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/tjoho"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Savannah
+            });_soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Jungle
+            });_soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound2"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Jungle
+            });_soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound3"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Jungle
+            });_soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound4"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Jungle
+            });_soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyDeathSound"),
+                State = SoundState.Dying,
+                Theme = SoundTheme.Jungle
+            });
 
-
-            //music
-            MediaPlayer.Play(_lobbyMusic);
+        //music
+        MediaPlayer.Play(_lobbyMusic);
             MediaPlayer.IsRepeating = true;
             //MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
             // MediaStateChanged event handler  will be called when the song completes,
@@ -161,13 +206,30 @@ namespace Backgrounds_Player
 
             foreach (Obstacles obstacle in obstacleHandler.obstacles)
             {
-                if(_player.Rectangle.Intersects(obstacle.Rectangle))
+                if(_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
                 {
+                    var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
+                    if (sounds.Any())
+                    {
+                        var rnd = new Random();
+                        sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                    }
                     _player.ChangeState(PlayerState.Dying);
                     _player.Velocity.X = 0;
-                    _soundEffects[0].Play();
-                    //obstacleHandler.obstacles.Clear();
                 }
+            }
+
+            if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && _player.State != PlayerState.Jumping)
+            {
+                var sounds = _soundEffects.Where(x => (x.State == SoundState.Jumping) && (x.Theme == getTheme())).ToArray();
+                if (sounds.Any())
+                {
+                    var rnd = new Random();
+                    sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                }
+                _player.ChangeState(PlayerState.Jumping);
+                _player.Position.Y -= 10f;
+                _player.Velocity.Y = -_player.JumpSpeed;
             }
 
             if (_nextState != null)
