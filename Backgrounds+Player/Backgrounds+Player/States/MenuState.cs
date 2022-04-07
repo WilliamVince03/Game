@@ -12,49 +12,112 @@ namespace Backgrounds_Player.States
     public class MenuState: State
     {
         private List<Components> _components;
+        private Button[] _buttons = new Button[5];
+        private bool levelSelect = false;
+
+
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            var buttonTexture = _content.Load<Texture2D>("Controls/button");
-            //var titleTexture = _content.Load<Texture2D>("theGame");
-            var buttonFont = _content.Load<SpriteFont>("Fonts/Font");
+            var StartTexture = _content.Load<Texture2D>("Menu/StartGame");
+            var LevelSelectTexture = _content.Load<Texture2D>("Menu/LevelSelect");
+            var QuitGameTexture = _content.Load<Texture2D>("Menu/QuitGame");
+            var ArcticTexture = _content.Load<Texture2D>("Menu/Arctic");
+            var DowntownTexture = _content.Load<Texture2D>("Menu/Downtown");
+            var JungleTexture = _content.Load<Texture2D>("Menu/Jungle");
+            var SavannahTexture = _content.Load<Texture2D>("Menu/Savannah");
+            var titleTexture = _content.Load<Texture2D>("Menu/Logo");
+            _components = new List<Components>();
 
-            //var title = new Title(titleTexture) 
-            //{ 
-            //    Position = new Vector2(400, 50) 
-            //};
-            
+            var title = new Title(titleTexture) 
+            { 
+                Position = new Vector2(420, 20) 
+            };
 
-            var newGameButton = new Button(buttonTexture, buttonFont)
+
+            var newGameButton = new Button(StartTexture)
             {
                 Position = new Vector2(400, 200),
-                Text = "New Game",
             };
 
             newGameButton.Click += NewGameButton_Click;
 
-            var loadGameButton = new Button(buttonTexture, buttonFont)
+            var levelSelectButton = new Button(LevelSelectTexture)
             {
                 Position = new Vector2(400, 350),
-                Text = "Load Game",
             };
 
-            loadGameButton.Click += LoadGameButton_Click;
+            levelSelectButton.Click += levelSelectButton_Click;
 
-            var quitGameButton = new Button(buttonTexture, buttonFont)
+            var quitGameButton = new Button(QuitGameTexture)
             {
-                Position = new Vector2(400, 500),
-                Text = "Quit",
+                Position = new Vector2(400, 490),
             };
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            _components = new List<Components>()
+
+            var DowntownButton = new Button(DowntownTexture)
             {
-                //title,
-                newGameButton,
-                loadGameButton,
-                quitGameButton,
+                Position = new Vector2(400, 0),
             };
+            _buttons[0] = DowntownButton;
+
+            DowntownButton.Click += DowntownButton_Click;
+
+
+            var SavannahButton = new Button(SavannahTexture)
+            {
+                Position = new Vector2(350, 230),
+            };
+            _buttons[1] = SavannahButton;
+
+            SavannahButton.Click += SavannahButton_Click;
+
+
+            var ArcticButton = new Button(ArcticTexture)
+            {
+                Position = new Vector2(400, 380),
+            };
+            _buttons[2] = ArcticButton;
+
+            ArcticButton.Click += ArcticButton_Click;
+
+
+            var JungleButton = new Button(JungleTexture)
+            {
+                Position = new Vector2(400, 530),
+            };
+            _buttons[3] = JungleButton;
+
+            JungleButton.Click += JungleButton_Click;
+
+
+            if (levelSelect == false)
+            {
+                if(_components.Count > 0) {
+                    _components.Clear();
+                }
+
+                _components.AddRange(new Components[]
+                {
+                    title,
+                    newGameButton,
+                    levelSelectButton,
+                    quitGameButton,
+                });  
+            }
+            else
+            {
+                _components.Clear();
+                _components.AddRange(new Components[]
+                {
+                    DowntownButton,
+                    SavannahButton,
+                    ArcticButton,
+                    JungleButton,
+                });
+
+            }
 
         }
 
@@ -69,9 +132,17 @@ namespace Backgrounds_Player.States
             spriteBatch.End();
         }
 
-        private void LoadGameButton_Click(object sender, EventArgs e)
+        private void levelSelectButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Load Game");
+            levelSelect = true;
+            _components.Clear();
+            _components.AddRange(new Components[]
+            {
+                    _buttons[0],
+                    _buttons[1],
+                    _buttons[2],
+                    _buttons[3],
+            });
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
@@ -86,13 +157,44 @@ namespace Backgrounds_Player.States
 
         public override void Update(GameTime gameTime)
         {
-            foreach (var component in _components)
+            try
+            {
+                foreach (var component in _components)
                 component.Update(gameTime);
+            }
+            catch
+            {
+
+            }
         }
 
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _game.Exit();
+        }
+
+        private void DowntownButton_Click(object sender, EventArgs e)
+        {
+            _game.ThemeChanger(1);
+            _components.Clear();
+        }
+
+        private void SavannahButton_Click(object sender, EventArgs e)
+        {
+            _game.ThemeChanger(3);
+            _components.Clear();
+        }
+
+        private void ArcticButton_Click(object sender, EventArgs e)
+        {
+            _game.ThemeChanger(2);
+            _components.Clear();
+        }
+
+        private void JungleButton_Click(object sender, EventArgs e)
+        {
+            _game.ThemeChanger(4);
+            _components.Clear();
         }
     }
 }

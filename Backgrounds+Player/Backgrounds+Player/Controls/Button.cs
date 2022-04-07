@@ -13,8 +13,6 @@ namespace Backgrounds_Player.Controls
 
         private MouseState _currentMouse;
 
-        private SpriteFont _font;
-
         private bool _isHovering;
 
         private MouseState _previousMouse;
@@ -47,10 +45,9 @@ namespace Backgrounds_Player.Controls
 
         #region Methods
 
-        public Button(Texture2D texture, SpriteFont font)
+        public Button(Texture2D texture)
         {
             _texture = texture;
-            _font = font;
             PenColour = Color.White;
         }
 
@@ -62,14 +59,6 @@ namespace Backgrounds_Player.Controls
                 colour = Color.Gray;
 
             spriteBatch.Draw(_texture, Rectangle, colour);
-
-            if (!string.IsNullOrEmpty(Text))
-            {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
-
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
-            }
         }
 
         public override void Update(GameTime gameTime)

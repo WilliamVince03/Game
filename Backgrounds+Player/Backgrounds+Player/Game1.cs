@@ -21,6 +21,7 @@ namespace Backgrounds_Player
         private Player _player;
         private ObstacleHandler obstacleHandler;
         private Vector2 _camera = Vector2.Zero;
+        private bool toggle = false;
 
         private State _currentState;
         private State _nextState;
@@ -50,15 +51,16 @@ namespace Backgrounds_Player
 
             base.Initialize();
 
-            //theme = rnd.Next(1, 5);
-            theme = 3;
+            theme = rnd.Next(1, 5);
+            //theme = 3;
 
-            Setup();
-            backgroundHandler = new BackgroundHandler(theme);
-            obstacleHandler = new ObstacleHandler(theme, 2000); // !!!!!!
+            PlayerSetup();
+            ThemeCycler();
+            //backgroundHandler = new BackgroundHandler(theme);
+            //obstacleHandler = new ObstacleHandler(theme, 2000); // !!!!!!
 
         }
-        void Setup()
+        void PlayerSetup()
         {
             TextureHandler.Instance.Theme = theme;
             _player = new Player(TextureHandler.Instance.GetTexture(TextureType.PlayerResting), TextureHandler.Instance.GetTextureAnimationFrames(TextureType.PlayerResting))
@@ -111,11 +113,14 @@ namespace Backgrounds_Player
             //_camera.X = Math.Min(_camera.X, 500);
             backgroundHandler.Update(gameTime, _player.Velocity.X); 
             obstacleHandler.Update(gameTime, _player.Velocity.X, _camera);
-
-            if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
+            if(toggle == true)
             {
+                if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
+                {
                 obstacleHandler.ObstacleAssigner(theme, (int)_camera.X + rnd.Next(1300, 2400));
+                }
             }
+           
 
             foreach (Obstacles obstacle in obstacleHandler.obstacles)
             {
@@ -142,6 +147,20 @@ namespace Backgrounds_Player
             Window.Title = obstacleHandler.obstacles.Count().ToString();
 
             base.Update(gameTime);
+        }
+
+        public void ThemeCycler()
+        {
+            backgroundHandler = new BackgroundHandler(theme);
+            obstacleHandler = new ObstacleHandler(theme, 2000, toggle); // !!!!!!
+        }
+
+        public void ThemeChanger(int select)
+        {
+            theme = select;
+            toggle = true;
+            ThemeCycler();
+            PlayerSetup();
         }
 
         protected override void Draw(GameTime gameTime)
