@@ -26,10 +26,10 @@ namespace Backgrounds_Player
         private State _currentState;
         private State _nextState;
 
-        public void ChangeState(State state)
-        {
-            _nextState = state;
-        }
+        //public void ChangeState(State state)
+        //{
+        //    _nextState = state;
+        //}
 
 
 
@@ -148,6 +148,12 @@ namespace Backgrounds_Player
             base.Update(gameTime);
         }
 
+        public void StartGame()
+        {
+            _player.key = true;
+            toggle = true;
+        }
+
         public void ThemeCycler()
         {
             backgroundHandler = new BackgroundHandler(theme);
@@ -156,6 +162,7 @@ namespace Backgrounds_Player
 
         public void ThemeChanger(int select)
         {
+            _player.key = true;
             theme = select;
             toggle = true;
             ThemeCycler();

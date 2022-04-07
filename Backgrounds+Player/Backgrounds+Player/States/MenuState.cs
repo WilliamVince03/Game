@@ -147,7 +147,9 @@ namespace Backgrounds_Player.States
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            _game.StartGame();
+            _components.Clear();
+
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -171,6 +173,7 @@ namespace Backgrounds_Player.States
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             _game.Exit();
+
         }
 
         private void DowntownButton_Click(object sender, EventArgs e)
