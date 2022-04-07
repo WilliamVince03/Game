@@ -47,10 +47,10 @@ namespace Backgrounds_Player
         {
             if (key == true)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Right) && Velocity.X == 0 || key == true)
+                if (Keyboard.GetState().IsKeyDown(Keys.Right) && Velocity.X == 0)
                 {
                     ChangeState(PlayerState.Running);
-                    Velocity.X = 5f; //orig 3f
+                    Velocity.X = 10f; //orig 3f
                 }
                 else            // bara att ta bort else om man inte ska kunna stå stilla!
                                 //Velocity.X = 0f;

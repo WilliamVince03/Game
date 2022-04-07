@@ -313,6 +313,18 @@
 /processorParam:TextureFormat=Color
 /build:City/Player/DeadPoodle.png
 
+#begin City/Player/poodleflyfast.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:City/Player/poodleflyfast.png
+
 #begin City/Player/WalkingPoodle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -404,7 +416,7 @@
 /processorParam:TextureFormat=Color
 /build:Jungle/Obstacles/Arrow.png
 
-#begin Jungle/Player/MonkeyDeath.png
+#begin Jungle/Obstacles/dangerplant.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -414,7 +426,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Jungle/Player/MonkeyDeath.png
+/build:Jungle/Obstacles/dangerplant.png
+
+#begin Jungle/Player/monke death (3).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Jungle/Player/monke death (3).png
 
 #begin Jungle/Player/MonkeyIdle.png
 /importer:TextureImporter
@@ -488,7 +512,7 @@
 /processorParam:TextureFormat=Color
 /build:Menu/LevelSelect.png
 
-#begin Menu/LOGO.png
+#begin Menu/Logo.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -498,7 +522,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Menu/LOGO.png;Menu/Logo.png
+/build:Menu/Logo.png
 
 #begin Menu/QuitGame.png
 /importer:TextureImporter
@@ -547,6 +571,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Menu/theGame.png
+
+#begin Music/Astro2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Astro2.mp3
 
 #begin Savannah/Background/CloseTree.png
 /importer:TextureImporter
@@ -644,6 +674,42 @@
 /processorParam:TextureFormat=Color
 /build:Savannah/Background/SavannahSun.png
 
+#begin Savannah/Obstacles/burnbarrel.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Savannah/Obstacles/burnbarrel.png
+
+#begin Savannah/Obstacles/DeadBush.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Savannah/Obstacles/DeadBush.png
+
+#begin Savannah/Obstacles/spookybird.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Savannah/Obstacles/spookybird.png
+
 #begin Savannah/Obstacles/Tumbleweed.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -680,6 +746,18 @@
 /processorParam:TextureFormat=Color
 /build:Savannah/Player/KangarooIdle.png
 
+#begin Savannah/Player/kangaroojump.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Savannah/Player/kangaroojump.png
+
 #begin Savannah/Player/KangarooRun.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -691,4 +769,10 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Savannah/Player/KangarooRun.png
+
+#begin SoundEffects/tjoho.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/tjoho.wav
 

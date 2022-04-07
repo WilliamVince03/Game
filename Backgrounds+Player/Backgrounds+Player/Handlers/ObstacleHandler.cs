@@ -25,9 +25,11 @@ namespace Backgrounds_Player
             var texture = TextureHandler.Instance.GetTexture(TextureType.Obstacle);
             var texture2 = TextureHandler.Instance.GetTexture(TextureType.Obstacle, 1);
             var texture3 = TextureHandler.Instance.GetTexture(TextureType.Obstacle, 2);
+            var texture4 = TextureHandler.Instance.GetTexture(TextureType.Obstacle, 3);
             var numOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle);
             var numOfFrames2 = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle, 1);
             var numOfFrames3 = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle, 2);
+            var numOfFrames4 = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle, 3);
             switch (theme)
             {
                 case 1:
@@ -46,7 +48,7 @@ namespace Backgrounds_Player
                     else
                     {
                         var taxi = new Obstacles(texture3, numOfFrames3, positionx, true);
-                        taxi.Layer = 0.1f; //later endast inbördes ordning inom obstacles ?
+                        taxi.Layer = 0.1f; //layer endast inbördes ordning inom obstacles ?
                         obstacles.Add(taxi);
                     }
                     break;
@@ -58,19 +60,23 @@ namespace Backgrounds_Player
                 case 3:
                     //savannah
                     var v = rnd.NextDouble();
-                    if (v < .3)
+                    if (v < .25)
                     {
                         var burnBarrel = new Obstacles(texture2, numOfFrames2, positionx);
                         obstacles.Add(burnBarrel);
-                    }else if (v < .6)
+                    }else if (v < .5)
                     {
                         var deadBush = new Obstacles(texture3, numOfFrames3, positionx);
                         obstacles.Add(deadBush);
-                    }
-                    else
+                    }else if(v < .75)
                     {
                         var tumbleweed = new Obstacles(texture, numOfFrames, positionx, true);
                         obstacles.Add(tumbleweed);
+                    }
+                    else
+                    {
+                        var bird = new Obstacles(texture4, numOfFrames4, positionx, true, false);
+                        obstacles.Add(bird);
                     }
                     break;
                 case 4:

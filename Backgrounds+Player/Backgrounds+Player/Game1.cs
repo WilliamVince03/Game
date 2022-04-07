@@ -4,6 +4,8 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 using Backgrounds_Player.States;
 
 namespace Backgrounds_Player
@@ -16,7 +18,8 @@ namespace Backgrounds_Player
         public static int ScreenWidth = 1280;
         public static int ScreenHeight = 720;
         private Random rnd = new Random();
-        private int theme;
+        private int _theme;
+        private int _highscore = 0;
         private BackgroundHandler backgroundHandler;
         private Player _player;
         private ObstacleHandler obstacleHandler;
@@ -26,11 +29,15 @@ namespace Backgrounds_Player
         private State _currentState;
         private State _nextState;
 
+        private Song _lobbyMusic;
+        private List<SoundEffect> _soundEffects;
+
+
+
         //public void ChangeState(State state)
         //{
         //    _nextState = state;
         //}
-
 
 
         public Game1()
@@ -38,8 +45,11 @@ namespace Backgrounds_Player
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            //sound
+            _soundEffects = new List<SoundEffect>();
         }
-        
+
         protected override void Initialize()
         {
             _graphics.PreferredBackBufferWidth = ScreenWidth;
@@ -51,18 +61,15 @@ namespace Backgrounds_Player
 
             base.Initialize();
 
-            theme = rnd.Next(1, 5);
-            //theme = 3;
+            _theme = rnd.Next(1, 5);
+            //_theme = 3;
 
             PlayerSetup();
             ThemeCycler();
-            //backgroundHandler = new BackgroundHandler(theme);
-            //obstacleHandler = new ObstacleHandler(theme, 2000); // !!!!!!
-
         }
         void PlayerSetup()
         {
-            TextureHandler.Instance.Theme = theme;
+            TextureHandler.Instance.Theme = _theme;
             _player = new Player(TextureHandler.Instance.GetTexture(TextureType.PlayerResting), TextureHandler.Instance.GetTextureAnimationFrames(TextureType.PlayerResting))
             {
                 Position = new Vector2(50, ScreenHeight - TextureHandler.Instance.GetPlayerTexture().Height - 50),
@@ -83,21 +90,18 @@ namespace Backgrounds_Player
             _player.Textures.Add(new PlayerTexture
             {
                 Texture = TextureHandler.Instance.GetTexture(TextureType.Player),
-                //Texture2 = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
                 NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Player),
                 State = PlayerState.Running
             });
             _player.Textures.Add(new PlayerTexture
             {
                 Texture = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
-                //Texture2 = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
                 NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Player, 1),
                 State = PlayerState.Running
             });
             _player.Textures.Add(new PlayerTexture
             {
                 Texture = TextureHandler.Instance.GetTexture(TextureType.Player, 2),
-                //Texture2 = TextureHandler.Instance.GetTexture(TextureType.Player, 1),
                 NumOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Player, 2),
                 State = PlayerState.Running
             });
@@ -117,6 +121,23 @@ namespace Backgrounds_Player
             TextureHandler.Instance.LoadTextures(this.Content);
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+
+            _lobbyMusic = Content.Load<Song>("Music/Astro2");
+            _soundEffects.Add(Content.Load<SoundEffect>("SoundEffects/tjoho"));
+
+
+            //music
+            MediaPlayer.Play(_lobbyMusic);
+            MediaPlayer.IsRepeating = true;
+            //MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+            // MediaStateChanged event handler  will be called when the song completes,
+            // --> decreasing the volume and playing the song again.
+        }
+        void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
+        {
+            // 0.0f is silent, 1.0f is full volume
+            MediaPlayer.Volume -= 0.1f;
+            MediaPlayer.Play(_lobbyMusic);
         }
 
         protected override void Update(GameTime gameTime)
@@ -133,7 +154,7 @@ namespace Backgrounds_Player
             {
                 if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
                 {
-                obstacleHandler.ObstacleAssigner(theme, (int)_camera.X + rnd.Next(1300, 2400));
+                obstacleHandler.ObstacleAssigner(_theme, (int)_camera.X + rnd.Next(2000, 3000));
                 }
             }
            
@@ -144,6 +165,8 @@ namespace Backgrounds_Player
                 {
                     _player.ChangeState(PlayerState.Dying);
                     _player.Velocity.X = 0;
+                    _soundEffects[0].Play();
+                    //obstacleHandler.obstacles.Clear();
                 }
             }
 
@@ -153,6 +176,10 @@ namespace Backgrounds_Player
 
                 _nextState = null;
             }
+
+            
+
+
 
             _currentState.Update(gameTime);
 
@@ -166,23 +193,23 @@ namespace Backgrounds_Player
 
         public void StartGame()
         {
+            MediaPlayer.Stop();
             _player.key = true;
             toggle = true;
         }
 
         public void ThemeCycler()
         {
-            backgroundHandler = new BackgroundHandler(theme);
-            obstacleHandler = new ObstacleHandler(theme, 2000, toggle); // !!!!!!
+            backgroundHandler = new BackgroundHandler(_theme);
+            obstacleHandler = new ObstacleHandler(_theme, 2000, toggle); 
         }
 
         public void ThemeChanger(int select)
         {
-            _player.key = true;
-            theme = select;
-            toggle = true;
+            _theme = select;
             ThemeCycler();
             PlayerSetup();
+            StartGame();
         }
 
         protected override void Draw(GameTime gameTime)
