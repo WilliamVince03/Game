@@ -1,15 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Backgrounds_Player.Controls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Backgrounds_Player.Controls;
-using BackgroundsPlayer.States;
 
 namespace Backgrounds_Player.States
 {
-    public class MenuState: State
+    public class MenuState : State
     {
         private List<Components> _components;
         private Button[] _buttons = new Button[5];
@@ -28,9 +26,9 @@ namespace Backgrounds_Player.States
             var titleTexture = _content.Load<Texture2D>("Menu/Logo");
             _components = new List<Components>();
 
-            var title = new Title(titleTexture) 
-            { 
-                Position = new Vector2(420, 20) 
+            var title = new Title(titleTexture)
+            {
+                Position = new Vector2(420, 20)
             };
 
 
@@ -94,7 +92,8 @@ namespace Backgrounds_Player.States
 
             if (levelSelect == false)
             {
-                if(_components.Count > 0) {
+                if (_components.Count > 0)
+                {
                     _components.Clear();
                 }
 
@@ -104,7 +103,7 @@ namespace Backgrounds_Player.States
                     newGameButton,
                     levelSelectButton,
                     quitGameButton,
-                });  
+                });
             }
             else
             {
@@ -121,7 +120,7 @@ namespace Backgrounds_Player.States
 
         }
 
-        
+
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
@@ -162,7 +161,7 @@ namespace Backgrounds_Player.States
             try
             {
                 foreach (var component in _components)
-                component.Update(gameTime);
+                    component.Update(gameTime);
             }
             catch
             {

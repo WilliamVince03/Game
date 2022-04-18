@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
 
 namespace Backgrounds_Player
 {
-    public class ObstacleHandler {
+    public class ObstacleHandler
+    {
         private Random rnd = new Random();
         public List<Obstacles> obstacles = new List<Obstacles>();
         public ObstacleHandler(int theme, int positionx, bool toggle)
         {
             //obstacles.Clear();
-            if(toggle == true)
+            if (toggle == true)
             {
                 ObstacleAssigner(theme, positionx);
 
@@ -64,11 +62,13 @@ namespace Backgrounds_Player
                     {
                         var burnBarrel = new Obstacles(texture2, numOfFrames2, positionx);
                         obstacles.Add(burnBarrel);
-                    }else if (v < .5)
+                    }
+                    else if (v < .5)
                     {
                         var deadBush = new Obstacles(texture3, numOfFrames3, positionx);
                         obstacles.Add(deadBush);
-                    }else if(v < .75)
+                    }
+                    else if (v < .75)
                     {
                         var tumbleweed = new Obstacles(texture, numOfFrames, positionx, true);
                         obstacles.Add(tumbleweed);
@@ -99,16 +99,16 @@ namespace Backgrounds_Player
                     break;
             }
         }
-        internal void Update(GameTime gameTime, float playerVelocityX, Vector2 cameraPosition) 
+        internal void Update(GameTime gameTime, float playerVelocityX, Vector2 cameraPosition)
         {
 
             foreach (var obstacle in obstacles) obstacle.Update(gameTime, playerVelocityX);
 
-            obstacles.RemoveAll(o=>o.Position.X < cameraPosition.X - 200);
+            obstacles.RemoveAll(o => o.Position.X < cameraPosition.X - 200);
         }
         internal void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
-            foreach (var obstacle in obstacles) obstacle.Draw(spriteBatch, cameraPosition);   
+            foreach (var obstacle in obstacles) obstacle.Draw(spriteBatch, cameraPosition);
         }
 
 

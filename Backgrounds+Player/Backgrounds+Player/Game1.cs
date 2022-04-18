@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Backgrounds_Player.States;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-using Microsoft.Xna.Framework.Audio;
-using Backgrounds_Player.States;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Backgrounds_Player
 {
@@ -31,6 +31,9 @@ namespace Backgrounds_Player
 
         private Song _lobbyMusic;
         private List<SoundEffects> _soundEffects { get; set; } = new List<SoundEffects>();
+
+        private float _currentTime = 0f; ///////
+        private float countDuration = 1f; //////   antal sekunder mellan varje poäng 
 
         //public void ChangeState(State State)
         //{
@@ -108,6 +111,7 @@ namespace Backgrounds_Player
             });
             _player.JumpSpeed = TextureHandler.Instance.GetPlayerJumpSpeed();
             _player.AnimationSpeed = TextureHandler.Instance.GetPlayerAnimationSpeed();
+
         }
 
         public class SoundEffects
@@ -125,7 +129,7 @@ namespace Backgrounds_Player
                 case 2: return SoundTheme.Arctic;
                 case 3: return SoundTheme.Savannah;
                 case 4: return SoundTheme.Jungle;
-                default: return SoundTheme.City; // måste
+                default: return SoundTheme.City; // måste ha defaut
             }
         }
         public enum SoundState { Idle, Running, Jumping, Dying }
@@ -144,35 +148,55 @@ namespace Backgrounds_Player
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/tjoho"),
                 State = SoundState.Jumping,
                 Theme = SoundTheme.Savannah
-            });_soundEffects.Add(new SoundEffects
+            }); _soundEffects.Add(new SoundEffects
             {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound"),
                 State = SoundState.Jumping,
                 Theme = SoundTheme.Jungle
-            });_soundEffects.Add(new SoundEffects
+            }); _soundEffects.Add(new SoundEffects
             {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound2"),
                 State = SoundState.Jumping,
                 Theme = SoundTheme.Jungle
-            });_soundEffects.Add(new SoundEffects
+            }); _soundEffects.Add(new SoundEffects
             {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound3"),
                 State = SoundState.Jumping,
                 Theme = SoundTheme.Jungle
-            });_soundEffects.Add(new SoundEffects
+            }); _soundEffects.Add(new SoundEffects
             {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound4"),
                 State = SoundState.Jumping,
                 Theme = SoundTheme.Jungle
-            });_soundEffects.Add(new SoundEffects
+            }); _soundEffects.Add(new SoundEffects
             {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyDeathSound"),
                 State = SoundState.Dying,
                 Theme = SoundTheme.Jungle
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinJumpingSound"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Arctic
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinDyingSound"),
+                State = SoundState.Dying,
+                Theme = SoundTheme.Arctic
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/City/PoodleJumpingSound"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.City
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/City/PoodleDyingSound"),
+                State = SoundState.Dying,
+                Theme = SoundTheme.City
             });
 
-        //music
-        MediaPlayer.Play(_lobbyMusic);
+            //music
+            MediaPlayer.Play(_lobbyMusic);
             MediaPlayer.IsRepeating = true;
             //MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
             // MediaStateChanged event handler  will be called when the song completes,
@@ -193,20 +217,19 @@ namespace Backgrounds_Player
             _player.Update();
             _camera.X = _player.Position.X;
             //_camera.X = Math.Min(_camera.X, 500);
-            backgroundHandler.Update(gameTime, _player.Velocity.X); 
+            backgroundHandler.Update(gameTime, _player.Velocity.X);
             obstacleHandler.Update(gameTime, _player.Velocity.X, _camera);
-            if(toggle == true)
+            if (toggle == true)
             {
                 if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
                 {
-                obstacleHandler.ObstacleAssigner(_theme, (int)_camera.X + rnd.Next(2000, 3000));
+                    obstacleHandler.ObstacleAssigner(_theme, (int)_camera.X + rnd.Next(2000, 3000));
                 }
             }
-           
 
             foreach (Obstacles obstacle in obstacleHandler.obstacles)
             {
-                if(_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
+                if (_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
                 {
                     var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
                     if (sounds.Any())
@@ -219,7 +242,7 @@ namespace Backgrounds_Player
                 }
             }
 
-            if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && _player.State != PlayerState.Jumping)
+            if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && _player.State != PlayerState.Jumping && _player.State != PlayerState.Dying) //behövs dying?
             {
                 var sounds = _soundEffects.Where(x => (x.State == SoundState.Jumping) && (x.Theme == getTheme())).ToArray();
                 if (sounds.Any())
@@ -239,16 +262,30 @@ namespace Backgrounds_Player
                 _nextState = null;
             }
 
-            
-
-
 
             _currentState.Update(gameTime);
 
             _currentState.PostUpdate(gameTime);
 
 
-            Window.Title = _player.Velocity.X.ToString();
+
+            ////////////////
+            _currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds; //Time passed since last Update() 
+
+            //if (_currentTime >= countDuration)
+            if (_currentTime >= countDuration && _player.State != PlayerState.Dying) 
+            {
+                _highscore++;
+                _currentTime -= countDuration;
+
+            }
+            // lös en text i övre hörnet med high score
+            // räkna bara när spelet är "på"
+            // nollställ när man börjar om
+
+
+            Window.Title = _player.Velocity.X.ToString() + "        " + _highscore.ToString();
+
 
             base.Update(gameTime);
         }
@@ -258,12 +295,14 @@ namespace Backgrounds_Player
             MediaPlayer.Stop();
             _player.key = true;
             toggle = true;
+            _player.ChangeState(PlayerState.Running);
+            _player.Velocity.X = 10f;
         }
 
         public void ThemeCycler()
         {
             backgroundHandler = new BackgroundHandler(_theme);
-            obstacleHandler = new ObstacleHandler(_theme, 2000, toggle); 
+            obstacleHandler = new ObstacleHandler(_theme, 2000, toggle);
         }
 
         public void ThemeChanger(int select)

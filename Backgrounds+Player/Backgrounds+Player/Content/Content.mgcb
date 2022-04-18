@@ -181,18 +181,6 @@
 /processorParam:TextureFormat=Color
 /build:Arctic/Player/WalkingPenguin.png
 
-#begin boy.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:boy.png
-
 #begin City/Background/BackgroundHousesColored.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -769,6 +757,36 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Savannah/Player/KangarooRun.png
+
+#begin SoundEffects/Arctic/PenguinDyingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinDyingSound.wav
+
+#begin SoundEffects/Arctic/PenguinJumpingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound.wav
+
+#begin SoundEffects/Arctic/PenguinJumpingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound.wav
+
+#begin SoundEffects/City/PoodleDyingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/City/PoodleDyingSound.wav
+
+#begin SoundEffects/City/PoodleJumpingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/City/PoodleJumpingSound.wav
 
 #begin SoundEffects/Jungle/MonkeyDeathSound.wav
 /importer:WavImporter

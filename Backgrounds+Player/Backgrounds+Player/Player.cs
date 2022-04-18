@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Backgrounds_Player
 {
@@ -20,7 +18,7 @@ namespace Backgrounds_Player
     public class Player : PlayerAnimation
     {
         public Vector2 Velocity;
-        public PlayerState State = PlayerState.Idle; // helst som private med...
+        public PlayerState State = PlayerState.Idle; // helst som private men...
         public float JumpSpeed { get; set; } = 8f;
         private int _ticks = 1000;
         public bool key { get; set; } = false;
@@ -38,7 +36,7 @@ namespace Backgrounds_Player
             if (playerTextures.Any())
             {
                 var rnd = new Random();
-                var playerTexture = playerTextures[rnd.Next(0,playerTextures.Length)];
+                var playerTexture = playerTextures[rnd.Next(0, playerTextures.Length)];
                 SetTexture(playerTexture.NumOfFrames, -1, playerTexture.Texture);
             }
             State = newState;
@@ -47,19 +45,11 @@ namespace Backgrounds_Player
         {
             if (key == true)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Right) && Velocity.X == 0)
-                {
-                    ChangeState(PlayerState.Running);
-                    Velocity.X = 10f; //orig 3f
-                }
-                else            // bara att ta bort else om man inte ska kunna stå stilla!
-                                //Velocity.X = 0f;
-
-                //if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && State != PlayerState.Jumping)
+                                 //flyttat till Game1.StartGame()
+                //if (Keyboard.GetState().IsKeyDown(Keys.Right) && Velocity.X == 0)
                 //{
-                //    ChangeState(PlayerState.Jumping);
-                //    Position.Y -= 10f;
-                //    Velocity.Y = -JumpSpeed;
+                //    ChangeState(PlayerState.Running);
+                //    Velocity.X = 10f; //orig 3f
                 //}
 
                 if (Position.Y >= 670 - Rectangle.Height)
@@ -73,21 +63,17 @@ namespace Backgrounds_Player
                 else
                     Velocity.Y += 0.25f;
 
-
                 Position += Velocity;
 
-            if (State == PlayerState.Dying || State== PlayerState.Jumping) Repeatable = false;
-            else Repeatable = true;
-
-
+                if (State == PlayerState.Dying || State == PlayerState.Jumping) Repeatable = false;
+                else Repeatable = true;
 
                 if (_ticks-- < 0)
                 {
                     Velocity.X += 0.001f;
                 }
             }
-
-                base.Update();
+            base.Update();
         }
     }
 }

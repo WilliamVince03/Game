@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Audio;
 
 namespace Backgrounds_Player
 {
@@ -11,12 +8,6 @@ namespace Backgrounds_Player
     {
         private static TextureHandler _instance = null;
         public int Theme { get; set; } = 1;
-
-        // ta bort sen
-        public Texture2D BoyTexture { get; set; }
-        public Texture2D BoyTexture1 { get; set; }
-        public Texture2D BoyTexture2 { get; set; }
-
 
         // city
         public Texture2D Houses { get; set; }
@@ -103,13 +94,6 @@ namespace Backgrounds_Player
 
         public void LoadTextures(ContentManager content)
         {
-
-            // ta bort
-            BoyTexture1 = content.Load<Texture2D>("boy");
-            BoyTexture2 = content.Load<Texture2D>("boy");
-            BoyTexture = content.Load<Texture2D>("boy");
-
-
             //city
             CityForeground = content.Load<Texture2D>("City/Background/CityForeground");
             Houses = content.Load<Texture2D>("City/Background/Houses");
@@ -130,7 +114,7 @@ namespace Backgrounds_Player
 
             //arctic
             ArcticSky = content.Load<Texture2D>("Arctic/Background/ArcticSky");
-            ArcticSun = content.Load<Texture2D>("Arctic/Background/ArcticSun"); 
+            ArcticSun = content.Load<Texture2D>("Arctic/Background/ArcticSun");
             ArcticCloud = content.Load<Texture2D>("Arctic/Background/ArcticCloud");
             ArcticBack = content.Load<Texture2D>("Arctic/Background/ArcticBack");
             ArcticMiddle = content.Load<Texture2D>("Arctic/Background/ArcticMiddle");
@@ -275,7 +259,7 @@ namespace Backgrounds_Player
                 case 1:
                     return FlyingPoodle;
                 case 2:
-                    return JumpingPenguin; 
+                    return JumpingPenguin;
                 case 3:
                     return KangarooJump;
                 case 4:
@@ -404,7 +388,7 @@ namespace Backgrounds_Player
             }
         }
 
-            public float GetPlayerJumpSpeed()
+        public float GetPlayerJumpSpeed()
         {
             switch (Theme)
             {
