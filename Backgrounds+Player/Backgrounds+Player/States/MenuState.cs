@@ -1,15 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Backgrounds_Player.Controls;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Backgrounds_Player.Controls;
-using BackgroundsPlayer.States;
 
 namespace Backgrounds_Player.States
 {
-    public class MenuState: State
+    public class MenuState : State
     {
         private List<Components> _components;
         private Button newGameButton;
@@ -144,7 +142,7 @@ namespace Backgrounds_Player.States
             try
             {
                 foreach (var component in _components)
-                component.Update(gameTime);
+                    component.Update(gameTime);
             }
             catch
             {

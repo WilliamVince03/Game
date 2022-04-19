@@ -17,7 +17,7 @@ namespace Backgrounds_Player
             switch (theme)
             {
                 case 1:
-                    //City
+                    //Idle
                     var foreground = new ScrollingBackgroundLayer(TextureHandler.Instance.CityForeground, 61f, 0.99f);
                     backgrounds.Add(foreground);
 

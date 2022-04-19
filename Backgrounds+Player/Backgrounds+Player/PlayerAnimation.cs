@@ -1,13 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Backgrounds_Player
 {
-    public class PlayerAnimation 
+    public class PlayerAnimation
     {
 
         protected float _layer { get; set; }
@@ -39,7 +35,7 @@ namespace Backgrounds_Player
         public bool Repeatable { get; set; } = true;
 
 
-        public void Update() 
+        public void Update()
         {
             if (_ticks-- < 0)
             {
@@ -48,13 +44,13 @@ namespace Backgrounds_Player
                 if (Repeatable)
                 { if (_currentFrame >= _numOfFrames) _currentFrame = 0; }
                 else
-                    if (_currentFrame >= _numOfFrames) _currentFrame = _numOfFrames-1;
+                    if (_currentFrame >= _numOfFrames) _currentFrame = _numOfFrames - 1;
             }
         }
 
-        public void SetTexture( int numOfFrames, int frameHeight = -1, Texture2D texture = null)
+        public void SetTexture(int numOfFrames, int frameHeight = -1, Texture2D texture = null)
         {
-            if(texture != null)
+            if (texture != null)
             {
                 _texture = texture;
             }
@@ -66,7 +62,7 @@ namespace Backgrounds_Player
                 _frameHeight = frameHeight;
             }
         }
-        public Rectangle Rectangle => new Rectangle((int)Position.X+50, (int)Position.Y, _frameWidth, _frameHeight);
+        public Rectangle Rectangle => new Rectangle((int)Position.X + 50, (int)Position.Y, _frameWidth, _frameHeight);
 
         public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {

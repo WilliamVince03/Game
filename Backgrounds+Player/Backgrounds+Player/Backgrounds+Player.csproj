@@ -23,5 +23,7 @@
   <ItemGroup>
     <Folder Include="Content\Arctic\Obstacles\" />
     <Folder Include="Content\Savannah\Obstacles\" />
+    <Folder Include="Content\SoundEffects\" />
+    <Folder Include="Content\SoundEffects\Jungle\" />
   </ItemGroup>
 </Project>
