@@ -29,8 +29,8 @@ namespace Backgrounds_Player
         private MenuState _nextState;
         private bool key = true;
 
-        private State _currentState;
-        private State _nextState;
+        //private State _currentState;
+        //private State _nextState;
 
         private Song _lobbyMusic;
         private List<SoundEffects> _soundEffects { get; set; } = new List<SoundEffects>();
