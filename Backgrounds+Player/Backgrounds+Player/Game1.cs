@@ -22,9 +22,9 @@ namespace Backgrounds_Player
         private ObstacleHandler obstacleHandler;
         private Vector2 _camera = Vector2.Zero;
         private bool toggle = false;
-
-        private State _currentState;
-        private State _nextState;
+        private MenuState _currentState;
+        private MenuState _nextState;
+        private bool key = true;
 
         //public void ChangeState(State state)
         //{
@@ -116,7 +116,9 @@ namespace Backgrounds_Player
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             TextureHandler.Instance.LoadTextures(this.Content);
 
-            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+            _currentState= new MenuState(this, _graphics.GraphicsDevice, Content);
+            //_menuState = new MenuState(this, _graphics.GraphicsDevice, Content);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -142,8 +144,13 @@ namespace Backgrounds_Player
             {
                 if(_player.Rectangle.Intersects(obstacle.Rectangle))
                 {
-                    _player.ChangeState(PlayerState.Dying);
-                    _player.Velocity.X = 0;
+                    if(key == true)
+                    {
+                        _player.ChangeState(PlayerState.Dying);
+                        _player.Velocity.X = 0;
+                        StopGame();
+                        key = false;
+                    }
                 }
             }
 
@@ -159,7 +166,7 @@ namespace Backgrounds_Player
             _currentState.PostUpdate(gameTime);
 
 
-            Window.Title = _player.Velocity.X.ToString();
+            Window.Title ="velocity " + _player.Velocity.X.ToString() + "timer " + _player.timer;
 
             base.Update(gameTime);
         }
@@ -170,6 +177,13 @@ namespace Backgrounds_Player
             toggle = true;
         }
 
+        public void StopGame()
+        {
+            _player.key = false;
+            toggle = false;
+            ThemeCycler();
+            _currentState.MainMenu();
+        }
         public void ThemeCycler()
         {
             backgroundHandler = new BackgroundHandler(theme);
@@ -178,11 +192,10 @@ namespace Backgrounds_Player
 
         public void ThemeChanger(int select)
         {
-            _player.key = true;
             theme = select;
-            toggle = true;
             ThemeCycler();
             PlayerSetup();
+            StartGame();
         }
 
         protected override void Draw(GameTime gameTime)

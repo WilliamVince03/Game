@@ -36,6 +36,7 @@ namespace Backgrounds_Player.States
 
         public abstract void Update(GameTime gameTime);
 
+
         #endregion
     }
 }

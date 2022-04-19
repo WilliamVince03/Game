@@ -30,5 +30,6 @@ namespace BackgroundsPlayer.States
         {
             throw new NotImplementedException();
         }
+
     }
 }

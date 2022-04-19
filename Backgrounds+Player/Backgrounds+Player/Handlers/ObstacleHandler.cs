@@ -13,10 +13,10 @@ namespace Backgrounds_Player
         public List<Obstacles> obstacles = new List<Obstacles>();
         public ObstacleHandler(int theme, int positionx, bool toggle)
         {
-            //obstacles.Clear();
             if(toggle == true)
             {
                 ObstacleAssigner(theme, positionx);
+                obstacles.Clear();
 
             }
         }
@@ -28,6 +28,7 @@ namespace Backgrounds_Player
             var numOfFrames = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle);
             var numOfFrames2 = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle, 1);
             var numOfFrames3 = TextureHandler.Instance.GetTextureAnimationFrames(TextureType.Obstacle, 2);
+            
             switch (theme)
             {
                 case 1:
