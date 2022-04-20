@@ -68,7 +68,7 @@ namespace Backgrounds_Player
                 if (State == PlayerState.Dying || State == PlayerState.Jumping) Repeatable = false;
                 else Repeatable = true;
 
-                if (_ticks-- < 0)
+                if (_ticks-- < 0 && State != PlayerState.Dying)
                 {
                     Velocity.X += 0.001f;
                 }

@@ -30,6 +30,10 @@ namespace Backgrounds_Player
         private State _nextState;
 
         private Song _lobbyMusic;
+        private Song _cityBackgroundMusic;
+        private Song _arcticBackgroundMusic;
+        private Song _savannahBackgroundMusic;
+        private Song _jungleBackgroundMusic;
         private List<SoundEffects> _soundEffects { get; set; } = new List<SoundEffects>();
 
         private float _currentTime = 0f; ///////
@@ -143,12 +147,12 @@ namespace Backgrounds_Player
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
             _lobbyMusic = Content.Load<Song>("Music/Astro2");
+            _cityBackgroundMusic = Content.Load<Song>("Music/CityBackgroundMusic");
+            _arcticBackgroundMusic = Content.Load<Song>("Music/ArcticBackgroundMusic");
+            _savannahBackgroundMusic = Content.Load<Song>("Music/SavannahBackgroundMusic");
+            _jungleBackgroundMusic = Content.Load<Song>("Music/JungleBackgroundMusic");
+
             _soundEffects.Add(new SoundEffects
-            {
-                SoundEffect = Content.Load<SoundEffect>("SoundEffects/tjoho"),
-                State = SoundState.Jumping,
-                Theme = SoundTheme.Savannah
-            }); _soundEffects.Add(new SoundEffects
             {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Jungle/MonkeyJumpingSound"),
                 State = SoundState.Jumping,
@@ -180,6 +184,26 @@ namespace Backgrounds_Player
                 Theme = SoundTheme.Arctic
             }); _soundEffects.Add(new SoundEffects
             {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinJumpingSound2"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Arctic
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinJumpingSound3"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Arctic
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinJumpingSound4"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Arctic
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinJumpingSound5"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Arctic
+            }); _soundEffects.Add(new SoundEffects
+            {
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/Arctic/PenguinDyingSound"),
                 State = SoundState.Dying,
                 Theme = SoundTheme.Arctic
@@ -193,6 +217,41 @@ namespace Backgrounds_Player
                 SoundEffect = Content.Load<SoundEffect>("SoundEffects/City/PoodleDyingSound"),
                 State = SoundState.Dying,
                 Theme = SoundTheme.City
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooDyingSound1"),
+                State = SoundState.Dying,
+                Theme = SoundTheme.Savannah
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooDyingSound2"),
+                State = SoundState.Dying,
+                Theme = SoundTheme.Savannah
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooDyingSound3"),
+                State = SoundState.Dying,
+                Theme = SoundTheme.Savannah
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooJumpingSound1"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Savannah
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooJumpingSound2"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Savannah
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooJumpingSound3"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Savannah
+            }); _soundEffects.Add(new SoundEffects
+            {
+                SoundEffect = Content.Load<SoundEffect>("SoundEffects/Savannah/KangarooJumpingSound4"),
+                State = SoundState.Jumping,
+                Theme = SoundTheme.Savannah
             });
 
             //music
@@ -272,17 +331,19 @@ namespace Backgrounds_Player
             ////////////////
             _currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds; //Time passed since last Update() 
 
-            //if (_currentTime >= countDuration)
-            if (_currentTime >= countDuration && _player.State != PlayerState.Dying) 
-            {
-                _highscore++;
-                _currentTime -= countDuration;
+            
+            
+                
+                //if (_currentTime >= countDuration)
+                if (_currentTime >= countDuration && _player.State != PlayerState.Dying && _player.key == true)
+                {
+                    _highscore++;
+                    _currentTime -= countDuration;
 
-            }
-            // lös en text i övre hörnet med high score
-            // räkna bara när spelet är "på"
-            // nollställ när man börjar om
-
+                }
+                // lös en text i övre hörnet med high score
+                // nollställ när man börjar om
+            
 
             Window.Title = _player.Velocity.X.ToString() + "        " + _highscore.ToString();
 
@@ -293,6 +354,21 @@ namespace Backgrounds_Player
         public void StartGame()
         {
             MediaPlayer.Stop();
+            switch (_theme)
+            {
+                case 1:
+                    MediaPlayer.Play(_cityBackgroundMusic);
+                    break;
+                case 2:
+                    MediaPlayer.Play(_arcticBackgroundMusic);
+                    break;
+                case 3:
+                    MediaPlayer.Play(_savannahBackgroundMusic);
+                    break;
+                case 4:
+                    MediaPlayer.Play(_jungleBackgroundMusic);
+                    break;
+            }
             _player.key = true;
             toggle = true;
             _player.ChangeState(PlayerState.Running);

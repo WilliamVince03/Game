@@ -62,7 +62,7 @@ namespace Backgrounds_Player
                 _frameHeight = frameHeight;
             }
         }
-        public Rectangle Rectangle => new Rectangle((int)Position.X + 50, (int)Position.Y, _frameWidth, _frameHeight);
+        public Rectangle Rectangle => new Rectangle((int)Position.X + 50, (int)Position.Y, _frameWidth*3/4, _frameHeight);
 
         public void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
