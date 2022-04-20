@@ -25,6 +25,7 @@ namespace Backgrounds_Player
         int step = 1;
         public bool key { get; set; } = false;
         public bool jumpKey = false;
+        private bool killSwitch = false;
 
         public List<PlayerTexture> Textures { get; set; } = new List<PlayerTexture>();
 
@@ -46,7 +47,7 @@ namespace Backgrounds_Player
         }
         public void MenuAnimation()
         {
-            if(key == false)
+            if(key == false && killSwitch == false)
             {
                 if (step == 1)
                 {
@@ -118,8 +119,10 @@ namespace Backgrounds_Player
             }
             else
             {
-                //off
+                killSwitch = true;
             }
+            killSwitch = true;
+
             Position += Velocity;
             timer--;
         }
