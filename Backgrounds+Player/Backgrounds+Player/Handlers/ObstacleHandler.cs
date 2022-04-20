@@ -11,10 +11,10 @@ namespace Backgrounds_Player
         public List<Obstacles> obstacles = new List<Obstacles>();
         public ObstacleHandler(int theme, int positionx, bool toggle)
         {
-            //obstacles.Clear();
-            if (toggle == true)
+            if(toggle == true)
             {
                 ObstacleAssigner(theme, positionx);
+                obstacles.Clear();
 
             }
         }

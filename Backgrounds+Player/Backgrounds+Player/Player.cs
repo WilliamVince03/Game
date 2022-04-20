@@ -21,7 +21,11 @@ namespace Backgrounds_Player
         public PlayerState State = PlayerState.Idle; // helst som private men...
         public float JumpSpeed { get; set; } = 8f;
         private int _ticks = 1000;
+        public int timer { get; set; } = 420; // ta bort get set efter felsökning
+        int step = 1;
         public bool key { get; set; } = false;
+        public bool jumpKey = false;
+        private bool killSwitch = false;
 
         public List<PlayerTexture> Textures { get; set; } = new List<PlayerTexture>();
 
@@ -41,6 +45,88 @@ namespace Backgrounds_Player
             }
             State = newState;
         }
+        public void MenuAnimation()
+        {
+            if(key == false && killSwitch == false)
+            {
+                if (step == 1)
+                {
+                    if(timer == 180)
+                    {
+                        ChangeState(PlayerState.Running);
+                        Velocity.X = 2f;
+                    }
+                    if (timer == 0)
+                    {
+                        timer = 400;
+                        if (GetRandom(0,2) == 1)
+                        {
+                            jumpKey = true;
+                        }
+                        step = 2;
+                    }
+
+                }
+                else if (step == 2)
+                {
+                    if(Velocity.X < 5f)
+                    {
+                        Velocity.X += 0.01f;
+                    }
+                    if (Velocity.X >= 5f && timer == 0)
+                    {
+                        step = 3;
+                        timer = 210;
+                        Velocity.X = 5f;
+                        if (GetRandom(0,2) == 0)
+                        {
+                            jumpKey = true;
+                        }
+                    }
+                   
+                }
+                else if (step == 3)
+                {
+                    Velocity.X -= 0.01f;
+
+                    
+
+                    if (Velocity.X <= 0)
+                    {
+                        ChangeState(PlayerState.Idle);
+                        timer = 320;
+                        step = 1;
+                    }
+                    
+                }
+                if (jumpKey == true)
+                {
+                    Jump();
+                    jumpKey = false;
+                }
+
+                if (Position.Y >= 670 - Rectangle.Height)
+                {
+                    if (State == PlayerState.Jumping)
+                    {
+                        ChangeState(PlayerState.Running);
+                    }
+                    Velocity.Y = 0f;
+                }
+                else
+                    Velocity.Y += 0.25f;
+                    
+            }
+            else
+            {
+                killSwitch = true;
+            }
+            killSwitch = true;
+
+            Position += Velocity;
+            timer--;
+        }
+
         public new void Update()
         {
             if (key == true)
@@ -73,7 +159,28 @@ namespace Backgrounds_Player
                     Velocity.X += 0.001f;
                 }
             }
+            else
+            {
+                MenuAnimation();
+            }
             base.Update();
+
+        }
+        private static Random random = new Random();
+
+        private static int GetRandom(int min, int max)
+        {
+            return random.Next(min, max);
+        }
+
+        public void Jump()
+        {
+            if (State != PlayerState.Jumping)
+            {
+                ChangeState(PlayerState.Jumping);
+                Position.Y -= 10f;
+                Velocity.Y = -JumpSpeed;
+            }
         }
     }
 }

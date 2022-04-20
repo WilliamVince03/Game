@@ -25,9 +25,12 @@ namespace Backgrounds_Player
         private ObstacleHandler obstacleHandler;
         private Vector2 _camera = Vector2.Zero;
         private bool toggle = false;
+        private MenuState _currentState;
+        private MenuState _nextState;
+        private bool key = true;
 
-        private State _currentState;
-        private State _nextState;
+        //private State _currentState;
+        //private State _nextState;
 
         private Song _lobbyMusic;
         private Song _cityBackgroundMusic;
@@ -133,7 +136,7 @@ namespace Backgrounds_Player
                 case 2: return SoundTheme.Arctic;
                 case 3: return SoundTheme.Savannah;
                 case 4: return SoundTheme.Jungle;
-                default: return SoundTheme.City; // måste ha defaut
+                default: return SoundTheme.City; // måste ha default
             }
         }
         public enum SoundState { Idle, Running, Jumping, Dying }
@@ -290,14 +293,20 @@ namespace Backgrounds_Player
             {
                 if (_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
                 {
-                    var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
-                    if (sounds.Any())
+                    if(key == true)
                     {
-                        var rnd = new Random();
-                        sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                        var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
+                        if (sounds.Any())
+                        {
+                            var rnd = new Random();
+                            sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                        }
+                        _player.ChangeState(PlayerState.Dying);
+                        _player.Velocity.X = 0;
+                        StopGame();
+                        key = false;
                     }
-                    _player.ChangeState(PlayerState.Dying);
-                    _player.Velocity.X = 0;
+                    
                 }
             }
 
@@ -345,7 +354,7 @@ namespace Backgrounds_Player
                 // nollställ när man börjar om
             
 
-            Window.Title = _player.Velocity.X.ToString() + "        " + _highscore.ToString();
+            Window.Title = _player.Velocity.X.ToString() + "        " + _highscore.ToString() + _player.timer;
 
 
             base.Update(gameTime);
@@ -375,6 +384,13 @@ namespace Backgrounds_Player
             _player.Velocity.X = 10f;
         }
 
+        public void StopGame()
+        {
+            _player.key = false;
+            toggle = false;
+            ThemeCycler();
+            _currentState.MainMenu();
+        }
         public void ThemeCycler()
         {
             backgroundHandler = new BackgroundHandler(_theme);
