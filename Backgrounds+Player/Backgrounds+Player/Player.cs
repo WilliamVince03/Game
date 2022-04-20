@@ -148,7 +148,7 @@ namespace Backgrounds_Player
                 Position += Velocity;
 
 
-                if (_ticks-- < 0)
+                if (_ticks-- < 0 && State != PlayerState.Dying)
                 {
                     Velocity.X += 0.001f;
                 }

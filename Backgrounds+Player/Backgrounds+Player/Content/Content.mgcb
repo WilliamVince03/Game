@@ -560,11 +560,35 @@
 /processorParam:TextureFormat=Color
 /build:Menu/theGame.png
 
+#begin Music/ArcticBackgroundMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/ArcticBackgroundMusic.mp3
+
 #begin Music/Astro2.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/Astro2.mp3
+
+#begin Music/CityBackgroundMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/CityBackgroundMusic.mp3
+
+#begin Music/JungleBackgroundMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/JungleBackgroundMusic.mp3
+
+#begin Music/SavannahBackgroundMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/SavannahBackgroundMusic.mp3
 
 #begin Savannah/Background/CloseTree.png
 /importer:TextureImporter
@@ -776,6 +800,30 @@
 /processorParam:Quality=Best
 /build:SoundEffects/Arctic/PenguinJumpingSound.wav
 
+#begin SoundEffects/Arctic/PenguinJumpingSound2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound2.wav
+
+#begin SoundEffects/Arctic/PenguinJumpingSound3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound3.wav
+
+#begin SoundEffects/Arctic/PenguinJumpingSound4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound4.wav
+
+#begin SoundEffects/Arctic/PenguinJumpingSound5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound5.wav
+
 #begin SoundEffects/City/PoodleDyingSound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -818,9 +866,45 @@
 /processorParam:Quality=Best
 /build:SoundEffects/Jungle/MonkeyJumpingSound4.wav
 
-#begin SoundEffects/tjoho.wav
+#begin SoundEffects/Savannah/KangarooDyingSound1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundEffects/tjoho.wav
+/build:SoundEffects/Savannah/KangarooDyingSound1.wav
+
+#begin SoundEffects/Savannah/KangarooDyingSound2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Savannah/KangarooDyingSound2.wav
+
+#begin SoundEffects/Savannah/KangarooDyingSound3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Savannah/KangarooDyingSound3.wav
+
+#begin SoundEffects/Savannah/KangarooJumpingSound1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Savannah/KangarooJumpingSound1.wav
+
+#begin SoundEffects/Savannah/KangarooJumpingSound2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Savannah/KangarooJumpingSound2.wav
+
+#begin SoundEffects/Savannah/KangarooJumpingSound3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Savannah/KangarooJumpingSound3.wav
+
+#begin SoundEffects/Savannah/KangarooJumpingSound4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Savannah/KangarooJumpingSound4.wav
 
