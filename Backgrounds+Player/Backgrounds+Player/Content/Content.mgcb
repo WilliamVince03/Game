@@ -770,6 +770,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/Arctic/PenguinJumpingSound.wav
 
+#begin SoundEffects/Arctic/PenguinJumpingSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Arctic/PenguinJumpingSound.wav
+
 #begin SoundEffects/City/PoodleDyingSound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
