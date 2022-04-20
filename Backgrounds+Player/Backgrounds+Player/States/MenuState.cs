@@ -10,7 +10,7 @@ namespace Backgrounds_Player.States
     public class MenuState : State
     {
         private List<Components> _components;
-        private Button newGameButton;
+        private Button startGameButton;
         private Button levelSelectButton;
         private Button quitGameButton;
         private Button DowntownButton;
@@ -37,17 +37,17 @@ namespace Backgrounds_Player.States
             };
 
 
-            newGameButton = new Button(StartTexture)
+            startGameButton = new Button(StartTexture)
             {
                 Position = new Vector2(400, 200),
             };
-            newGameButton.Click += NewGameButton_Click;
+            startGameButton.Click += StartGameButton_Click;
 
             levelSelectButton = new Button(LevelSelectTexture)
             {
                 Position = new Vector2(400, 350),
             };
-            levelSelectButton.Click += levelSelectButton_Click;
+            levelSelectButton.Click += LevelSelectButton_Click;
 
             quitGameButton = new Button(QuitGameTexture)
             {
@@ -107,13 +107,13 @@ namespace Backgrounds_Player.States
             _components.AddRange(new Components[]
             {
                     title,
-                    newGameButton,
+                    startGameButton,
                     levelSelectButton,
                     quitGameButton,
             });
         }
 
-        private void levelSelectButton_Click(object sender, EventArgs e)
+        private void LevelSelectButton_Click(object sender, EventArgs e)
         {
             _components.Clear();
             _components.AddRange(new Components[]
@@ -125,7 +125,7 @@ namespace Backgrounds_Player.States
             });
         }
 
-        private void NewGameButton_Click(object sender, EventArgs e)
+        private void StartGameButton_Click(object sender, EventArgs e)
         {
             _game.StartGame();
             _components.Clear();

@@ -27,7 +27,7 @@ namespace Backgrounds_Player
         private bool toggle = false;
         private MenuState _currentState;
         private MenuState _nextState;
-        private bool key = true;
+        private bool key = false;
 
         //private State _currentState;
         //private State _nextState;
@@ -214,8 +214,14 @@ namespace Backgrounds_Player
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Back))
                 Exit();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && key == true)
+            {
+                StopGame();
+                key = false;
+            }
 
             _player.Update();
             _camera.X = _player.Position.X;
@@ -244,6 +250,11 @@ namespace Backgrounds_Player
                         }
                         _player.ChangeState(PlayerState.Dying);
                         _player.Velocity.X = 0;
+                        //if(_player.Position.Y > 0)
+                        //{
+                        //    _player.Position.Y -= 10f;                    För att fixa "bort flygningen" när man dör mitt i hopp, försöker fixa senare i nyaste versionen istället
+                        //    _player.Velocity.Y = -_player.JumpSpeed;
+                        //}
                         StopGame();
                         key = false;
                     }
@@ -303,6 +314,8 @@ namespace Backgrounds_Player
         {
             MediaPlayer.Stop();
             _player.key = true;
+            key = true; // borde nog ändra namn på variabel då det redan finns en annan "key" i Player.cs
+            _player.killSwitch = true;
             toggle = true;
             _player.ChangeState(PlayerState.Running);
             _player.Velocity.X = 10f;

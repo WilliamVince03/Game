@@ -9,7 +9,7 @@ using Backgrounds_Player;
 
 namespace BackgroundsPlayer.States
 {
-    public class GameState : State
+    public class GameState : State // Hela denna classen behövs inte, meen jag avvaktar med att ta bort, då alla meny classer är "känsliga".
     {
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {

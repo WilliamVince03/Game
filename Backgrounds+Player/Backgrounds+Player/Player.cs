@@ -25,7 +25,7 @@ namespace Backgrounds_Player
         int step = 1;
         public bool key { get; set; } = false;
         public bool jumpKey = false;
-        private bool killSwitch = false;
+        public bool killSwitch { get; set; } = false;
 
         public List<PlayerTexture> Textures { get; set; } = new List<PlayerTexture>();
 
@@ -115,13 +115,9 @@ namespace Backgrounds_Player
                 }
                 else
                     Velocity.Y += 0.25f;
-                    
             }
-            else
-            {
-                killSwitch = true;
-            }
-            killSwitch = true;
+            
+            
 
             Position += Velocity;
             timer--;
@@ -151,8 +147,6 @@ namespace Backgrounds_Player
 
                 Position += Velocity;
 
-                if (State == PlayerState.Dying || State == PlayerState.Jumping) Repeatable = false;
-                else Repeatable = true;
 
                 if (_ticks-- < 0)
                 {
@@ -163,6 +157,10 @@ namespace Backgrounds_Player
             {
                 MenuAnimation();
             }
+
+            if (State == PlayerState.Dying || State == PlayerState.Jumping) Repeatable = false;
+            else Repeatable = true;
+            
             base.Update();
 
         }
