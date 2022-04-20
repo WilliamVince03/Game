@@ -132,7 +132,7 @@ namespace Backgrounds_Player
                 case 2: return SoundTheme.Arctic;
                 case 3: return SoundTheme.Savannah;
                 case 4: return SoundTheme.Jungle;
-                default: return SoundTheme.City; // måste ha defaut
+                default: return SoundTheme.City; // måste ha default
             }
         }
         public enum SoundState { Idle, Running, Jumping, Dying }

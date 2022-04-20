@@ -106,7 +106,7 @@ namespace Backgrounds_Player
 
                 if (Position.Y >= 670 - Rectangle.Height)
                 {
-                    if (state == PlayerState.Jumping)
+                    if (State == PlayerState.Jumping)
                     {
                         ChangeState(PlayerState.Running);
                     }
@@ -172,7 +172,7 @@ namespace Backgrounds_Player
 
         public void Jump()
         {
-            if (state != PlayerState.Jumping)
+            if (State != PlayerState.Jumping)
             {
                 ChangeState(PlayerState.Jumping);
                 Position.Y -= 10f;
