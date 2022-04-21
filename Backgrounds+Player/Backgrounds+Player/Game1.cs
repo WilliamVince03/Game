@@ -19,7 +19,7 @@ namespace Backgrounds_Player
         public static int ScreenHeight = 720;
         private Random rnd = new Random();
         private int _theme;
-        private int _highscore = 0;
+        public int _highscore { get; set;} = 0;
         private BackgroundHandler backgroundHandler;
         private Player _player;
         private ObstacleHandler obstacleHandler;
@@ -273,87 +273,89 @@ namespace Backgrounds_Player
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Back))
-                Exit();
+            try{
+                if (Keyboard.GetState().IsKeyDown(Keys.Back))
+                    Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && key == true)
-            {
-                StopGame();
-                key = false;
-            }
-
-            _player.Update();
-            _camera.X = _player.Position.X;
-            //_camera.X = Math.Min(_camera.X, 500);
-            backgroundHandler.Update(gameTime, _player.Velocity.X);
-            obstacleHandler.Update(gameTime, _player.Velocity.X, _camera);
-            if (toggle == true)
-            {
-                if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && key == true)
                 {
-                    obstacleHandler.ObstacleAssigner(_theme, (int)_camera.X + rnd.Next(2000, 3000));
+                    StopGame();
+                    key = false;
                 }
-            }
 
-            foreach (Obstacles obstacle in obstacleHandler.obstacles)
-            {
-                if (_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
+                _player.Update();
+                _camera.X = _player.Position.X;
+                //_camera.X = Math.Min(_camera.X, 500);
+                backgroundHandler.Update(gameTime, _player.Velocity.X);
+                obstacleHandler.Update(gameTime, _player.Velocity.X, _camera);
+                if (toggle == true)
                 {
-                    if(key == true)
+                    if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
                     {
-                        var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
-                        if (sounds.Any())
-                        {
-                            var rnd = new Random();
-                            sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
-                        }
-                        _player.ChangeState(PlayerState.Dying);
-                        _player.Velocity.X = 0;
-                        //if(_player.Position.Y > 0)
-                        //{
-                        //    _player.Position.Y -= 10f;                    För att fixa "bort flygningen" när man dör mitt i hopp, försöker fixa senare i nyaste versionen istället
-                        //    _player.Velocity.Y = -_player.JumpSpeed;
-                        //}
-                        StopGame();
-                        key = false;
+                        obstacleHandler.ObstacleAssigner(_theme, (int)_camera.X + rnd.Next(2000, 3000));
                     }
-                    
                 }
-            }
 
-            if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && _player.State != PlayerState.Jumping && _player.State != PlayerState.Dying) //behövs dying?
-            {
-                var sounds = _soundEffects.Where(x => (x.State == SoundState.Jumping) && (x.Theme == getTheme())).ToArray();
-                if (sounds.Any())
+                foreach (Obstacles obstacle in obstacleHandler.obstacles)
                 {
-                    var rnd = new Random();
-                    sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                    if (_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
+                    {
+                        if (key == true)
+                        {
+                            var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
+                            if (sounds.Any())
+                            {
+                                var rnd = new Random();
+                                sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                            }
+                            _player.ChangeState(PlayerState.Dying);
+                            _player.Velocity.X = 0;
+                            //if (_player.Position.Y > 0)
+                            //{
+                            //    _player.Position.Y -= 10f; // För att fixa "bort flygningen" när man dör mitt i hopp, försöker fixa senare i nyaste versionen istället
+                            //    _player.Velocity.Y = -_player.JumpSpeed;
+                            //}
+                            StopGame();
+                            _highscore = 0;
+                            key = false;
+                        }
+
+                    }
                 }
-                _player.ChangeState(PlayerState.Jumping);
-                _player.Position.Y -= 10f;
-                _player.Velocity.Y = -_player.JumpSpeed;
-            }
 
-            if (_nextState != null)
-            {
-                _currentState = _nextState;
+                if ((Keyboard.GetState().IsKeyDown(Keys.Space) || Keyboard.GetState().IsKeyDown(Keys.Up)) && _player.State != PlayerState.Jumping && _player.State != PlayerState.Dying) //behövs dying?
+                {
+                    var sounds = _soundEffects.Where(x => (x.State == SoundState.Jumping) && (x.Theme == getTheme())).ToArray();
+                    if (sounds.Any())
+                    {
+                        var rnd = new Random();
+                        sounds[rnd.Next(0, sounds.Length)].SoundEffect.Play();
+                    }
+                    _player.ChangeState(PlayerState.Jumping);
+                    _player.Position.Y -= 10f;
+                    _player.Velocity.Y = -_player.JumpSpeed;
+                }
 
-                _nextState = null;
-            }
+                if (_nextState != null)
+                {
+                    _currentState = _nextState;
+
+                    _nextState = null;
+                }
 
 
-            _currentState.Update(gameTime);
+                _currentState.Update(gameTime);
 
-            _currentState.PostUpdate(gameTime);
+                _currentState.PostUpdate(gameTime);
 
 
 
-            ////////////////
-            _currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds; //Time passed since last Update() 
+                ////////////////
+                _currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds; //Time passed since last Update() 
 
-            
-            
-                
+
+
+
                 //if (_currentTime >= countDuration)
                 if (_currentTime >= countDuration && _player.State != PlayerState.Dying && _player.key == true)
                 {
@@ -363,12 +365,17 @@ namespace Backgrounds_Player
                 }
                 // lös en text i övre hörnet med high score
                 // nollställ när man börjar om
-            
-
-            Window.Title = _player.Velocity.X.ToString() + "        " + _highscore.ToString() + _player.timer;
 
 
-            base.Update(gameTime);
+                Window.Title =  _highscore.ToString();
+
+
+                base.Update(gameTime);
+            }
+            catch
+            {
+
+            }
         }
 
         public void StartGame()
@@ -420,18 +427,22 @@ namespace Backgrounds_Player
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            try
+            {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
+                _spriteBatch.Begin();
 
-            backgroundHandler.Draw(_spriteBatch, _camera);
-            obstacleHandler.Draw(_spriteBatch, _camera);
-            _player.Draw(_spriteBatch, _camera);
-            _spriteBatch.End();
-            _currentState.Draw(gameTime, _spriteBatch);
+                backgroundHandler.Draw(_spriteBatch, _camera);
+                obstacleHandler.Draw(_spriteBatch, _camera);
+                _player.Draw(_spriteBatch, _camera);
+                _spriteBatch.End();
+                _currentState.Draw(gameTime, _spriteBatch);
 
 
-            base.Draw(gameTime);
+                base.Draw(gameTime);
+            }
+            catch { }
         }
     }
 }

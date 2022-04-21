@@ -129,7 +129,6 @@ namespace Backgrounds_Player.States
         {
             _game.StartGame();
             _components.Clear();
-
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -146,7 +145,7 @@ namespace Backgrounds_Player.States
             }
             catch
             {
-
+                // ska förbli tomt
             }
         }
 

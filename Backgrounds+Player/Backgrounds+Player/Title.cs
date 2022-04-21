@@ -13,6 +13,7 @@ namespace Backgrounds_Player
 
         private Texture2D _texture;
         public Vector2 Position { get; set; }
+
         public Rectangle Rectangle
         {
             get
@@ -21,6 +22,8 @@ namespace Backgrounds_Player
             }
 
         }
+
+
         #endregion
 
         public Title(Texture2D texture)
