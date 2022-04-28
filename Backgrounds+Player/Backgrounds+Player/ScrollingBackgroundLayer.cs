@@ -30,7 +30,7 @@ namespace Backgrounds_Player
                 _position = new Vector2(0, 0);
         }
 
-        public void Update(GameTime gameTime, float playerSpeedX) //
+        public void Update(GameTime gameTime, float playerSpeedX) 
         {
             var speed = (float)(_scrollingSpeed * gameTime.ElapsedGameTime.TotalSeconds);
 

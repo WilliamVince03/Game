@@ -37,17 +37,13 @@ namespace Backgrounds_Player
             _texture = texture;
             var bodyheight = Game1.ScreenHeight - texture.Height;
             if (placeBottom)
-                Position = new Vector2(positionx, bodyheight - 40);//50
+                Position = new Vector2(positionx, bodyheight - 40);
             else
             {
                 var n = rnd.Next(1, 100);
-                // för låg sannorlikhet med höga
-                //if (n < 70) pos = bodyheight - 50;
-                //else if (n < 90) pos = bodyheight - 70;
-                //else pos = bodyheight - texture.Height*5; //200 bra för duckning
                 if (n < 25) pos = bodyheight - 50;
                 else if (n < 50) pos = bodyheight - 70;
-                else pos = bodyheight - 320; //200 bra för duckning
+                else pos = bodyheight - 320;
                 Position = new Vector2(positionx, pos);
             }
         }

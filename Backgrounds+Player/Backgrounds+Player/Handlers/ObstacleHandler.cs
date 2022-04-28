@@ -46,7 +46,7 @@ namespace Backgrounds_Player
                     else
                     {
                         var taxi = new Obstacles(texture3, numOfFrames3, positionx, true);
-                        taxi.Layer = 0.1f; //layer endast inbördes ordning inom obstacles ?
+                        taxi.Layer = 0.1f; 
                         obstacles.Add(taxi);
                     }
                     break;

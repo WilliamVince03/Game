@@ -89,6 +89,7 @@ namespace Backgrounds_Player
                     backgrounds.Add(walkingPath);
                     break;
                 case 4:
+                    //Jungle
                     var backGround = new ScrollingBackgroundLayer(TextureHandler.Instance.BackgroundFog, 0f, .1f);
                     backgrounds.Add(backGround);
 
@@ -108,10 +109,7 @@ namespace Backgrounds_Player
                     break;
             }
         }
-        internal void Update(GameTime gameTime, float playerVelocityX)
-        {
-            //foreach (var backgroundLayer in backgrounds) backgroundLayer.Update(gameTime, playerVelocityX);
-        }
+
         internal void Draw(SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
             foreach (var backgroundLayer in backgrounds.OrderBy(x => x.Layer)) backgroundLayer.Draw(spriteBatch, cameraPosition);

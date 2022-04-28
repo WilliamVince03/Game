@@ -105,7 +105,6 @@ namespace Backgrounds_Player
             //obstacles
             Firepost = content.Load<Texture2D>("City/Obstacles/Firepost");
             Newspaper = content.Load<Texture2D>("City/Obstacles/Newspaper");
-            //Taxi = content.Load<Texture2D>("Idle/Obstacles/taxi");
             //player
             WalkingPoodle = content.Load<Texture2D>("City/Player/WalkingPoodle");
             DeadPoodle = content.Load<Texture2D>("City/Player/DeadPoodle");
@@ -122,13 +121,13 @@ namespace Backgrounds_Player
             ArcticForeground = content.Load<Texture2D>("Arctic/Background/ArcticForeground");
             //player
             WalkingPenguin = content.Load<Texture2D>("Arctic/Player/WalkingPenguin");
-            WalkingPenguin2 = content.Load<Texture2D>("Arctic/Player/PenguinWalking2");//pingvin 2
-            WalkingPenguin3 = content.Load<Texture2D>("Arctic/Player/PenguinWalkingAlternate");//pingvin 3
+            WalkingPenguin2 = content.Load<Texture2D>("Arctic/Player/PenguinWalking2");
+            WalkingPenguin3 = content.Load<Texture2D>("Arctic/Player/PenguinWalkingAlternate");
             DeadPenguin = content.Load<Texture2D>("Arctic/Player/DeadPenguin");
             IdlePenguin = content.Load<Texture2D>("Arctic/Player/IdlePenguin");
             JumpingPenguin = content.Load<Texture2D>("Arctic/Player/PenguinBackflip");
             //obstacles
-            Snowball = content.Load<Texture2D>("Arctic/Obstacles/Snowball"); // för stor och bakofram
+            Snowball = content.Load<Texture2D>("Arctic/Obstacles/Snowball");
 
             // Savannah
             SavannahSky = content.Load<Texture2D>("Savannah/Background/SavannahSky");
@@ -166,7 +165,7 @@ namespace Backgrounds_Player
             DangerPlant = content.Load<Texture2D>("Jungle/Obstacles/dangerplant");
         }
 
-        public Texture2D GetTexture(TextureType type, int v = 0) ///
+        public Texture2D GetTexture(TextureType type, int v = 0)
         {
             switch (type)
             {
@@ -184,7 +183,7 @@ namespace Backgrounds_Player
             return GetPlayerTexture();
         }
 
-        public int GetTextureAnimationFrames(TextureType type, int v = 0) /////
+        public int GetTextureAnimationFrames(TextureType type, int v = 0)
         {
             switch (type)
             {
@@ -333,13 +332,12 @@ namespace Backgrounds_Player
                     return 4;
             }
         }
-        public Texture2D GetObsticleTexture(int v = 0) ////////////////
+        public Texture2D GetObsticleTexture(int v = 0)
         {
             switch (Theme)
             {
                 case 1:
                     if (v == 1) return Firepost;
-                    //if (v == 2) return Taxi;
                     return Newspaper;
                 case 2:
                     return Snowball;
@@ -355,13 +353,12 @@ namespace Backgrounds_Player
                     return Tumbleweed;
             }
         }
-        public int GetObstacleTextureAnimationFrames(int v = 0) ///////////
+        public int GetObstacleTextureAnimationFrames(int v = 0) 
         {
             switch (Theme)
             {
                 case 1:
                     if (v == 1) return 1;
-                    //if (v == 2) return 1;
                     return 17;
                 case 2:
                     return 12;
@@ -393,7 +390,7 @@ namespace Backgrounds_Player
             switch (Theme)
             {
                 case 1:
-                    return 8f; // krävs 9 för att hoppa över firepost // 6 för tidning
+                    return 8f;
                 case 2:
                     return 8f;
                 case 3:

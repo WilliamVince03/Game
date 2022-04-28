@@ -18,10 +18,10 @@ namespace Backgrounds_Player
     public class Player : PlayerAnimation
     {
         public Vector2 Velocity;
-        public PlayerState State = PlayerState.Idle; // helst som private men...
+        public PlayerState State = PlayerState.Idle;
         public float JumpSpeed { get; set; } = 8f;
         private int _ticks = 1000;
-        public int timer { get; set; } = 420; // ta bort get set efter felsökning
+        public int timer = 420;
         int step = 1;
         public bool key { get; set; } = false;
         public bool jumpKey = false;
@@ -127,13 +127,6 @@ namespace Backgrounds_Player
         {
             if (key == true)
             {
-                                 //flyttat till Game1.StartGame()
-                //if (Keyboard.GetState().IsKeyDown(Keys.Right) && Velocity.X == 0)
-                //{
-                //    ChangeState(PlayerState.Running);
-                //    Velocity.X = 10f; //orig 3f
-                //}
-
                 if (Position.Y >= 670 - Rectangle.Height)
                 {
                     if (State == PlayerState.Jumping)

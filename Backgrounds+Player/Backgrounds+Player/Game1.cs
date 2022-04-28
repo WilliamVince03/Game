@@ -27,10 +27,7 @@ namespace Backgrounds_Player
         private bool toggle = false;
         private MenuState _currentState;
         private MenuState _nextState;
-        private bool key = false;
-
-        //private State _currentState;
-        //private State _nextState;
+        private bool unlock = false;
 
         private Song _lobbyMusic;
         private Song _cityBackgroundMusic;
@@ -39,14 +36,8 @@ namespace Backgrounds_Player
         private Song _jungleBackgroundMusic;
         private List<SoundEffects> _soundEffects { get; set; } = new List<SoundEffects>();
 
-        private float _currentTime = 0f; ///////
+        private float _currentTime = 0f;
         private float countDuration = 1f; //////   antal sekunder mellan varje poäng 
-
-        //public void ChangeState(State State)
-        //{
-        //    _nextState = State;
-        //}
-
 
         public Game1()
         {
@@ -67,7 +58,6 @@ namespace Backgrounds_Player
             base.Initialize();
 
             _theme = rnd.Next(1, 5);
-            //_theme = 3;
 
             PlayerSetup();
             ThemeCycler();
@@ -260,13 +250,10 @@ namespace Backgrounds_Player
             //music
             MediaPlayer.Play(_lobbyMusic);
             MediaPlayer.IsRepeating = true;
-            //MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-            // MediaStateChanged event handler  will be called when the song completes,
-            // --> decreasing the volume and playing the song again.
+           
         }
         void MediaPlayer_MediaStateChanged(object sender, System.EventArgs e)
         {
-            // 0.0f is silent, 1.0f is full volume
             MediaPlayer.Volume -= 0.1f;
             MediaPlayer.Play(_lobbyMusic);
         }
@@ -277,20 +264,18 @@ namespace Backgrounds_Player
                 if (Keyboard.GetState().IsKeyDown(Keys.Back))
                     Exit();
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && key == true)
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && unlock == true)
                 {
                     StopGame();
-                    key = false;
+                    unlock = false;
                 }
 
                 _player.Update();
                 _camera.X = _player.Position.X;
-                //_camera.X = Math.Min(_camera.X, 500);
-                backgroundHandler.Update(gameTime, _player.Velocity.X);
                 obstacleHandler.Update(gameTime, _player.Velocity.X, _camera);
                 if (toggle == true)
                 {
-                    if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500)) // kolla om avstånden är bra
+                    if (!obstacleHandler.obstacles.Any(o => o.Position.X > _camera.X + 500))
                     {
                         obstacleHandler.ObstacleAssigner(_theme, (int)_camera.X + rnd.Next(2000, 3000));
                     }
@@ -300,7 +285,7 @@ namespace Backgrounds_Player
                 {
                     if (_player.Rectangle.Intersects(obstacle.Rectangle) && _player.State != PlayerState.Dying)
                     {
-                        if (key == true)
+                        if (unlock == true)
                         {
                             var sounds = _soundEffects.Where(x => (x.State == SoundState.Dying) && (x.Theme == getTheme())).ToArray();
                             if (sounds.Any())
@@ -310,14 +295,9 @@ namespace Backgrounds_Player
                             }
                             _player.ChangeState(PlayerState.Dying);
                             _player.Velocity.X = 0;
-                            //if (_player.Position.Y > 0)
-                            //{
-                            //    _player.Position.Y -= 10f; // För att fixa "bort flygningen" när man dör mitt i hopp, försöker fixa senare i nyaste versionen istället
-                            //    _player.Velocity.Y = -_player.JumpSpeed;
-                            //}
                             StopGame();
                             _highscore = 0;
-                            key = false;
+                            unlock = false;
                         }
 
                     }
@@ -346,26 +326,18 @@ namespace Backgrounds_Player
 
                 _currentState.Update(gameTime);
 
-                _currentState.PostUpdate(gameTime);
 
-
-
-                ////////////////
-                _currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds; //Time passed since last Update() 
+                _currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds; 
 
 
 
 
-                //if (_currentTime >= countDuration)
                 if (_currentTime >= countDuration && _player.State != PlayerState.Dying && _player.key == true)
                 {
                     _highscore++;
                     _currentTime -= countDuration;
 
                 }
-                // lös en text i övre hörnet med high score
-                // nollställ när man börjar om
-
 
                 Window.Title =  _highscore.ToString();
 
@@ -397,7 +369,7 @@ namespace Backgrounds_Player
                     break;
             }
             _player.key = true;
-            key = true; // borde nog ändra namn på variabel då det redan finns en annan "key" i Player.cs
+            unlock = true;
             _player.killSwitch = true;
             toggle = true;
             _player.ChangeState(PlayerState.Running);

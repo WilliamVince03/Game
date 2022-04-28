@@ -131,11 +131,6 @@ namespace Backgrounds_Player.States
             _components.Clear();
         }
 
-        public override void PostUpdate(GameTime gameTime)
-        {
-            // Remove sprites if they're not needed
-        }
-
         public override void Update(GameTime gameTime)
         {
             try
@@ -145,7 +140,7 @@ namespace Backgrounds_Player.States
             }
             catch
             {
-                // ska förbli tomt
+                // ska förbli tom
             }
         }
 
